@@ -55,5 +55,5 @@ sprite_change_offset("plat", 64, 94);
 
 sprite_change_offset("nspecial_proj", 64, 94);
 
-sprite_change_offset("0_climb1", 81, 120);
-sprite_change_offset("1_climb1", 81, 119);
+sprite_change_offset("0_climb1", 85, 151);
+sprite_change_offset("1_climb1", 85, 151);

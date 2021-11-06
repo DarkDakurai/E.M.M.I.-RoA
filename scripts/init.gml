@@ -10,7 +10,7 @@
 // STAT NAME		ZETTER VALUE   BASECAST RANGE   NOTES
 
 // Physical size
-char_height         = 52;       //                  not zetterburn's. this is just cosmetic anyway
+char_height         = 10000;       //                  not zetterburn's. this is just cosmetic anyway
 knockback_adj       = 1;		// 0.9  -  1.2
 
 // Ground movement
@@ -177,7 +177,7 @@ wall = 0; //0 = ground, 1 = right wall, 2 = left wall, 3 = ceiling
 special_anim_timer = 0;
 climbing = false;
 climb_timer = 0;
-anger_state = 0; //0 = blue light, 1 = yellow light, 2 = red light
+anger_state = 2; //0 = blue light, 1 = yellow light, 2 = red light
 
 prev_dir = spr_dir;
 
