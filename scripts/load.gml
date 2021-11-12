@@ -1,14 +1,22 @@
-sprite_change_offset("0_idle", 42, 34);
-sprite_change_offset("1_idle", 42, 33);
+sprite_change_offset("0_climb1", 84, 151);
+sprite_change_offset("1_climb1", 84, 151);
+
 sprite_change_offset("bighurt", 32, 62);
 sprite_change_offset("hurt", 32, 62);
-sprite_change_offset("crouch", 32, 94);
-sprite_change_offset("0_run", 42, 35);
-sprite_change_offset("1_run", 42, 35);
+
+sprite_change_offset("0_crouch", 77, 67);
+sprite_change_offset("1_crouch", 77, 67);
+
+sprite_change_offset("0_walk", 42, 35);
+sprite_change_offset("1_walk", 42, 35);
 sprite_change_offset("walkturn", 32, 62);
-sprite_change_offset("dash", 32, 62);
-sprite_change_offset("dashstart", 32, 62);
-sprite_change_offset("dashstop", 32, 62);
+
+sprite_change_offset("0_dash", 80, 66);
+sprite_change_offset("0_dash_start", 80, 66);
+sprite_change_offset("0_dash_stop", 80, 66);
+sprite_change_offset("1_dash", 80, 66);
+sprite_change_offset("1_dash_start", 80, 66);
+sprite_change_offset("1_dash_stop", 80, 66);
 sprite_change_offset("dashturn", 32, 62);
 
 sprite_change_offset("jumpstart", 32, 62);
@@ -55,5 +63,11 @@ sprite_change_offset("plat", 64, 94);
 
 sprite_change_offset("nspecial_proj", 64, 94);
 
+sprite_change_offset("hurtboxxy_crouch", 82, 64);
+
 sprite_change_offset("0_climb1", 85, 151);
 sprite_change_offset("1_climb1", 85, 151);
+sprite_change_offset("climb1_hurt", 170, 302);
+sprite_change_offset("0_climb2", 85, 151);
+sprite_change_offset("1_climb2", 85, 151);
+sprite_change_offset("climb2_hurt", 170, 302);

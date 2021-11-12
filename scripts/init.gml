@@ -10,21 +10,21 @@
 // STAT NAME		ZETTER VALUE   BASECAST RANGE   NOTES
 
 // Physical size
-char_height         = 10000;       //                  not zetterburn's. this is just cosmetic anyway
+char_height         = 100;       //                  not zetterburn's. this is just cosmetic anyway
 knockback_adj       = 1;		// 0.9  -  1.2
 
 // Ground movement
 walk_speed          = 3.25;		// 3    -  4.5
 walk_accel          = 0.2;		// 0.2  -  0.5
 walk_turn_time      = 6;		// 6
-initial_dash_time   = 8;		// 8    -  16       zetterburn's is 14
-initial_dash_speed  = 7;		// 4    -  9
+initial_dash_time   = 12;		// 8    -  16       zetterburn's is 14
+initial_dash_speed  = 6;		// 4    -  9
 dash_speed          = 6.5;		// 5    -  9
 dash_turn_time      = 10;		// 8    -  20
 dash_turn_accel     = 1.5;		// 0.1  -  2
-dash_stop_time      = 6;		// 4    -  6        zetterburn's is 4
+dash_stop_time      = 12;		// 4    -  6        zetterburn's is 4
 dash_stop_percent   = 0.35;		// 0.25 -  0.5
-ground_friction     = 0.5;		// 0.3  -  1
+ground_friction     = 5;		// 0.3  -  1
 moonwalk_accel      = 1.3;		// 1.2  -  1.4
     
 // Air movement
@@ -92,7 +92,7 @@ beam_newest_hbox = noone;
 
 // Misc. animation speeds
 idle_anim_speed     = 0.1;
-crouch_anim_speed   = 0.1;
+crouch_anim_speed   = 0;
 walk_anim_speed     = 0.125;
 dash_anim_speed     = 0.2;
 pratfall_anim_speed = 0.25;
@@ -130,9 +130,9 @@ roll_back_active_frames         = 4;
 roll_back_recovery_frames       = 2;
 
 // Crouch
-crouch_startup_frames   = 2;
+crouch_startup_frames   = 4;
 crouch_active_frames    = 1;
-crouch_recovery_frames  = 2;
+crouch_recovery_frames  = 4;
 
 /*
 
@@ -151,7 +151,7 @@ of the standing-up animation. Dan Moment
 
 // Hurtbox sprites
 hurtbox_spr         = sprite_get("hurtboxxy");
-crouchbox_spr       = sprite_get("hurtboxxy");
+crouchbox_spr       = sprite_get("hurtboxxy_crouch");
 air_hurtbox_spr     = -1; // -1 = use hurtbox_spr
 hitstun_hurtbox_spr = -1; // -1 = use hurtbox_spr
 
@@ -177,7 +177,7 @@ wall = 0; //0 = ground, 1 = right wall, 2 = left wall, 3 = ceiling
 special_anim_timer = 0;
 climbing = false;
 climb_timer = 0;
-anger_state = 2; //0 = blue light, 1 = yellow light, 2 = red light
+anger_state = 0; //0 = blue light, 1 = yellow light, 2 = red light
 
 prev_dir = spr_dir;
 
@@ -199,6 +199,6 @@ AT_DTHROW
 AT_NTHROW
 AT_TAUNT_2
 AT_EXTRA_1 used climb_1.gml
-AT_EXTRA_2
+AT_EXTRA_2 used climb_2.gml
 AT_EXTRA_3
 */
