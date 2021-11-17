@@ -24,14 +24,14 @@ dash_turn_time      = 10;		// 8    -  20
 dash_turn_accel     = 1.5;		// 0.1  -  2
 dash_stop_time      = 12;		// 4    -  6        zetterburn's is 4
 dash_stop_percent   = 0.35;		// 0.25 -  0.5
-ground_friction     = 5;		// 0.3  -  1
+ground_friction     = 6;		// 0.3  -  1
 moonwalk_accel      = 1.3;		// 1.2  -  1.4
     
 // Air movement
 leave_ground_max    = 6;		// 4    -  8
 max_jump_hsp        = 6;		// 4    -  8
 air_max_speed       = 4;  		// 3    -  7
-jump_change         = 3;		// 3
+jump_change         = 5;		// 3
 air_accel           = 0.3;		// 0.2  -  0.4
 prat_fall_accel     = 0.85;		// 0.25 -  1.5
 air_friction        = 0.04;		// 0.02 -  0.07
@@ -41,16 +41,16 @@ gravity_speed       = 0.5;		// 0.3  -  0.6
 hitstun_grav        = 0.5;		// 0.45 -  0.53
 
 // Jumps
-jump_start_time     = 5;		// 5                this stat is automatically decreased by 1 after init.gml (dan moment), so its "real value" is 4. if you change this during a match, 4 is the value you should reset it to
-jump_speed          = 11;		// 7.6  -  12       okay, zetter's is actually 10.99 but... come on
-short_hop_speed     = 6;		// 4    -  7.4
-djump_speed         = 10;		// 6    -  12       absa's is -1 because of her floaty djump
+jump_start_time     = 20;		// 5                this stat is automatically decreased by 1 after init.gml (dan moment), so its "real value" is 4. if you change this during a match, 4 is the value you should reset it to
+jump_speed          = 12;		// 7.6  -  12       okay, zetter's is actually 10.99 but... come on
+short_hop_speed     = 12;		// 4    -  7.4
+djump_speed         = 12;		// 6    -  12       absa's is -1 because of her floaty djump
 djump_accel         = 0;		// -1.4 -  0        absa's is -1.4, all other chars are 0. only works if the   djump_accel_end_time   variable is also set. floaty djumps should be adjusted by feel based on your char's gravity
 djump_accel_end_time= 0;		//                  the amount of time that   djump_accel   is applied for
 max_djumps          = 1;		// 0    -  3        the 0 is elliana because she has hover instead
 walljump_hsp        = 7;		// 4    -  7
 walljump_vsp        = 8;		// 7    -  10
-land_time           = 4;		// 4    -  6
+land_time           = 20;		// 4    -  6
 prat_land_time      = 10;		// 3    -  24       zetterburn's is 3, but that's ONLY because his uspecial is so slow. safer up b (or other move) = longer pratland time to compensate
 
 // Shield-button actions
@@ -98,7 +98,7 @@ dash_anim_speed     = 0.2;
 pratfall_anim_speed = 0.25;
 
 // Jumps
-double_jump_time    = 20;		// 24   -  40
+double_jump_time    = 22;		// 24   -  40
 walljump_time       = 18;		// 18   -  32
 wall_frames         = 2;		// may or may not actually work... dan pls
 
@@ -152,7 +152,7 @@ of the standing-up animation. Dan Moment
 // Hurtbox sprites
 hurtbox_spr         = sprite_get("hurtboxxy");
 crouchbox_spr       = sprite_get("hurtboxxy_crouch");
-air_hurtbox_spr     = -1; // -1 = use hurtbox_spr
+air_hurtbox_spr     = sprite_get("hurtboxxy_air");
 hitstun_hurtbox_spr = -1; // -1 = use hurtbox_spr
 
 // Victory
@@ -180,6 +180,7 @@ climb_timer = 0;
 anger_state = 0; //0 = blue light, 1 = yellow light, 2 = red light
 
 prev_dir = spr_dir;
+crawling = false;
 
 /*empty attack list
 AT_NSPECIAL_2
