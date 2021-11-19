@@ -10,31 +10,31 @@ set_color_profile_slot_range( 1, 1, 1, 1 );
 
 // plating 3
 set_color_profile_slot( 0, 2, 70, 94, 96 );
-set_color_profile_slot_range( 2, 1, 1, 1 );
+set_color_profile_slot_range( 2, 1, 3, 1 );
 
 // limbs 1
 set_color_profile_slot( 0, 3, 50, 50, 50 );
-set_color_profile_slot_range( 3, 1, 1, 1 );
+set_color_profile_slot_range( 3, 1, 1, 2 );
 
 // limbs 2
 set_color_profile_slot( 0, 4, 35, 36, 62 );
-set_color_profile_slot_range( 4, 1, 1, 1 );
+set_color_profile_slot_range( 4, 1, 7, 2 );
 
 // limbs 3
 set_color_profile_slot( 0, 5, 5, 6, 36 );
-set_color_profile_slot_range( 5, 1, 1, 1 );
+set_color_profile_slot_range( 5, 1, 19, 3 );
 
 // eye 1
 set_color_profile_slot( 0, 6, 255, 11, 11 );
-set_color_profile_slot_range( 6, 1, 1, 1 );
+set_color_profile_slot_range( 6, 1, 4, 1 );
 
 // eye 2
 set_color_profile_slot( 0, 7, 255, 155, 69 );
-set_color_profile_slot_range( 7, 1, 1, 1 );
+set_color_profile_slot_range( 7, 2, 2, 1 );
 
 
 // ALTERNATE COLORS
-set_num_palettes( 13 );
+set_num_palettes( 16 );
 
 // E.M.M.I.-01P
 set_color_profile_slot( 1, 0, 133, 134, 138 ); //plating 1
@@ -120,7 +120,7 @@ set_color_profile_slot( 8, 7, 255, 155, 69 ); //eye 2
 set_color_profile_slot( 9, 0, 62, 9, 185 ); //plating 1
 set_color_profile_slot( 9, 1, 69, 29, 161 ); //plating 2
 set_color_profile_slot( 9, 2, 70, 1, 117 ); //plating 3
-set_color_profile_slot( 9, 3, 21, 48, 93 ); //limbs 1
+set_color_profile_slot( 9, 3, 225, 225, 225 ); //limbs 1
 set_color_profile_slot( 9, 4, 225, 225, 225 ); //limbs 2
 set_color_profile_slot( 9, 5, 21, 48, 93 ); //limbs 3
 set_color_profile_slot( 9, 6, 255, 11, 11 ); //eye 1
@@ -155,3 +155,40 @@ set_color_profile_slot( 12, 4, 166, 110, 88 ); //limbs 2
 set_color_profile_slot( 12, 5, 164, 50, 50 ); //limbs 3
 set_color_profile_slot( 12, 6, 255, 11, 11 ); //eye 1
 set_color_profile_slot( 12, 7, 255, 155, 69 ); //eye 2
+
+// E.M.M.I.-01EVA
+set_color_profile_slot( 13, 0, 207, 128, 205 ); //plating 1
+set_color_profile_slot( 13, 1, 92, 70, 161 ); //plating 2
+set_color_profile_slot( 13, 2, 38, 27, 71 ); //plating 3
+set_color_profile_slot( 13, 3, 0, 140, 0 ); //limbs 1
+set_color_profile_slot( 13, 4, 0, 140, 0 ); //limbs 2
+set_color_profile_slot( 13, 5, 0, 114, 1 ); //limbs 3
+set_color_profile_slot( 13, 6, 199, 199, 199 ); //eye 1
+set_color_profile_slot( 13, 7, 255, 255, 255 ); //eye 2
+
+// E.M.M.I.-00EVA
+set_color_profile_slot( 14, 0, 251, 158, 2 ); //plating 1
+set_color_profile_slot( 14, 1, 225, 82, 21 ); //plating 2
+set_color_profile_slot( 14, 2, 41, 10, 2 ); //plating 3
+set_color_profile_slot( 14, 3, 121, 112, 136 ); //limbs 1
+set_color_profile_slot( 14, 4, 121, 112, 136 ); //limbs 2
+set_color_profile_slot( 14, 5, 28, 48, 66 ); //limbs 3
+set_color_profile_slot( 14, 6, 255, 11, 11 ); //eye 1
+set_color_profile_slot( 14, 7, 255, 155, 69 ); //eye 2
+
+// E.M.M.I.-02EVA
+set_color_profile_slot( 15, 0, 253, 57, 30 ); //plating 1
+set_color_profile_slot( 15, 1, 123, 32, 31 ); //plating 2
+set_color_profile_slot( 15, 2, 12, 4, 11 ); //plating 3
+set_color_profile_slot( 15, 3, 242, 133, 17 ); //limbs 1
+set_color_profile_slot( 15, 4, 242, 133, 17 ); //limbs 2
+set_color_profile_slot( 15, 5, 231, 94, 26 ); //limbs 3
+set_color_profile_slot( 15, 6, 15, 181, 0 ); //eye 1
+set_color_profile_slot( 15, 7, 90, 240, 77 ); //eye 2
+
+
+/* This is a comment used by that one RoA colors.gml generator tool to store palette data. You can safely keep it in your colors.gml if you plan to re-use the tool later, or safely remove it if you don't.
+=== BEGIN JSON PALETTE ===
+{"formatversion":1,"data":[{"name":"plating 1","colors":[{"r":225,"g":226,"b":232,"main":true}]},{"name":"plating 2","colors":[{"r":146,"g":183,"b":186,"main":true}]},{"name":"plating 3","colors":[{"r":70,"g":94,"b":96,"main":true},{"r":72,"g":94,"b":96}]},{"name":"limbs 1","colors":[{"r":50,"g":50,"b":50,"main":true},{"r":53,"g":53,"b":53}]},{"name":"limbs 2","colors":[{"r":35,"g":36,"b":62,"main":true},{"r":40,"g":41,"b":64}]},{"name":"limbs 3","colors":[{"r":5,"g":6,"b":36,"main":true},{"r":13,"g":14,"b":41}]},{"name":"eye 1","colors":[{"r":255,"g":11,"b":11,"main":true},{"r":255,"g":19,"b":19}]},{"name":"eye 2","colors":[{"r":255,"g":155,"b":69,"main":true},{"r":255,"g":154,"b":71}]}]}
+=== END JSON PALETTE ===
+*/
