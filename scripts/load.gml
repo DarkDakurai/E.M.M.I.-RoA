@@ -28,7 +28,9 @@ sprite_change_offset("1_idle_air", 48, 86);
 sprite_change_offset("0_land", 48, 98);
 sprite_change_offset("1_land", 48, 98);
 sprite_change_offset("landinglag", 32, 62);
-sprite_change_offset("pratfall", 32, 62);
+
+sprite_change_offset("0_pratfall", 21, 65);
+sprite_change_offset("1_pratfall", 21, 65);
 
 sprite_change_offset("parry", 32, 62);
 sprite_change_offset("roll_forward", 64, 94);
@@ -50,7 +52,12 @@ sprite_change_offset("dair", 64, 94);
 sprite_change_offset("fstrong", 64, 94);
 sprite_change_offset("ustrong", 64, 190);
 sprite_change_offset("dstrong", 96, 94);
-sprite_change_offset("nspecial", 64, 94);
+sprite_change_offset("0_nspecial", 77, 98);
+sprite_change_offset("1_nspecial", 77, 98);
+sprite_change_offset("nspecial_hurt", 154, 196);
+sprite_change_offset("0_nspecial_air", 77, 160);
+sprite_change_offset("1_nspecial_air", 77, 160);
+sprite_change_offset("nspecial_air_hurt", 154, 320);
 sprite_change_offset("nspecial_beam_start", 64, 64);
 sprite_change_offset("nspecial_beam_end", 64, 64);
 sprite_change_offset("nspecial_beam_loop", 0, 64);

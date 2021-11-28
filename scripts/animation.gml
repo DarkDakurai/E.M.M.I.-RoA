@@ -54,6 +54,9 @@ switch(wall){
         sprite_index = sprite_get(string(plate_state) + "_land");
         image_index = state_timer * 0.2;
         break;
+        case PS_PRATFALL:
+        sprite_index = sprite_get(string(plate_state) + "_pratfall");
+        break;
     }
     break;
     

@@ -173,14 +173,29 @@ bubble_y = 8;
 
 //emmi variables 
 plate_state = 0;
+
 wall = 0; //0 = ground, 1 = right wall, 2 = left wall, 3 = ceiling
 special_anim_timer = 0;
 climbing = false;
 climb_timer = 0;
+
 anger_state = 0; //0 = blue light, 1 = yellow light, 2 = red light
+anger_value = 0; //max 100
+hud_timer = 0;
+bar_glow = 1;
 
 prev_dir = spr_dir;
+prevprev_dir = 0;
 crawling = false;
+
+//nspecial variables
+random_timing = 0; //0-3
+x_pos = x;
+timing = false;
+victim = 0;
+grab_x = 0;
+grab_y = 0;
+hit = false;
 
 /*empty attack list
 AT_NSPECIAL_2
@@ -194,7 +209,7 @@ AT_DSPECIAL_AIR
 AT_FSTRONG_2
 AT_USTRONG_2
 AT_DSTRONG_2
-AT_FTHROW used empty.gml
+AT_FTHROW
 AT_UTHROW
 AT_DTHROW
 AT_NTHROW
