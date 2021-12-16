@@ -51,19 +51,17 @@ sprite_change_offset("uair", 64, 94);
 sprite_change_offset("dair", 64, 94);
 sprite_change_offset("fstrong", 64, 94);
 sprite_change_offset("ustrong", 64, 190);
-sprite_change_offset("dstrong", 96, 94);
+
+sprite_change_offset("0_dstrong", 128, 161);
+sprite_change_offset("1_dstrong", 128, 161);
+
 sprite_change_offset("0_nspecial", 77, 98);
 sprite_change_offset("1_nspecial", 77, 98);
 sprite_change_offset("nspecial_hurt", 154, 196);
 sprite_change_offset("0_nspecial_air", 77, 160);
 sprite_change_offset("1_nspecial_air", 77, 160);
 sprite_change_offset("nspecial_air_hurt", 154, 320);
-sprite_change_offset("nspecial_beam_start", 64, 64);
-sprite_change_offset("nspecial_beam_end", 64, 64);
-sprite_change_offset("nspecial_beam_loop", 0, 64);
-sprite_change_offset("nspecial_beam_fade", 0, 33);
-sprite_change_offset("vfx_nspecial_fire", 100, 140);
-sprite_change_offset("vfx_ftilt_destroy", 100, 140); // actually for nspecial, not ftilt
+
 sprite_change_offset("fspecial", 64, 94);
 sprite_change_offset("uspecial", 96, 126);
 sprite_change_offset("dspecial", 64, 94);

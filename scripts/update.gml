@@ -582,7 +582,7 @@ if(state == PS_JUMPSQUAT){
 }
 
 //anger value stuff
-if(up_down && anger_value < 1000){
+if(up_down && anger_value < 1000){ //debug
     anger_value++
     anger_value++
     anger_value++

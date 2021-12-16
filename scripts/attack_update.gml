@@ -90,5 +90,10 @@ switch(attack){
     	hit_player_obj = noone;
     }
 	break;
+	case AT_DSTRONG:
+	set_hitbox_value(AT_DSTRONG, 1, HG_DAMAGE, 8 + (plate_state * 2));
+	set_hitbox_value(AT_DSTRONG, 4, HG_DAMAGE, 8 + (plate_state * 2));
+	set_hitbox_value(AT_DSTRONG, 5, HG_DAMAGE, 8 + (plate_state * 2));
+	break;
 }
 

@@ -48,31 +48,43 @@ sound_set[1] = "turret ON";
 sound_set[2] = "sound OFF";
 
 if "alpher" not in self {
-       alpher = 1  
+       alpher = 1;
+}
+
+if "alpher_alt" not in self {
+       alpher_alt = 0;
 }
 
 if "sound" not in self {
-       sound = 0  
+       sound = 0;
 }
 
 if(alpher > 0){
     alpher -= 0.05;
 }
 
+if(alpher_alt > 0){
+    alpher_alt -= 0.05;
+}
+
 if(alt_cur == 0 && prev_alt == 26){
-    alpher = 3;
+    alpher = 2;
     if(sound < 2){
         sound++;
     }else{
         sound = 0;
     }
 }else if(alt_cur == 26 && prev_alt == 0){
-    alpher = 3;
+    alpher = 2;
     if(sound > 0){
         sound--;
     }else{
         sound = 2;
     }
+}
+
+if(alt_cur != prev_alt){
+    alpher_alt = 2
 }
 
 set_color_profile_slot(27, 0, sound, 0, 0);
@@ -99,7 +111,15 @@ if(alt_cur == 12){
 }
 
 //alt name
-textDraw(temp_x + 28, temp_y + 151, "medFont", c_white, 0, 100000, 1, false, 1, alt_name[alt_cur]);
+textDraw(temp_x + 60, temp_y + 141, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 60, temp_y + 139, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 60, temp_y + 137, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 56, temp_y + 141, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 56, temp_y + 139, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 56, temp_y + 137, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 58, temp_y + 141, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 58, temp_y + 137, "fName", c_black, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
+textDraw(temp_x + 58, temp_y + 139, "fName", c_white, 0, 100000, 1, false, alpher_alt, alt_name[alt_cur]);
 
 #define textDraw(x, y, font, color, lineb, linew, scale, outline, alpha, string)
 

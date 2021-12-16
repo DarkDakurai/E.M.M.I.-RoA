@@ -47,6 +47,8 @@ switch(attack){
         set_window_value(AT_NSPECIAL_AIR, 6, AG_WINDOW_LENGTH, 6);
         break;
     }
-    
+    break;
+    case AT_DSTRONG:
+    set_attack_value(AT_DSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_dstrong"));
     break;
 }
