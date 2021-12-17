@@ -41,7 +41,7 @@ gravity_speed       = 0.5;		// 0.3  -  0.6
 hitstun_grav        = 0.5;		// 0.45 -  0.53
 
 // Jumps
-jump_start_time     = 20;		// 5                this stat is automatically decreased by 1 after init.gml (dan moment), so its "real value" is 4. if you change this during a match, 4 is the value you should reset it to
+jump_start_time     = 7;		// 5                this stat is automatically decreased by 1 after init.gml (dan moment), so its "real value" is 4. if you change this during a match, 4 is the value you should reset it to
 jump_speed          = 12;		// 7.6  -  12       okay, zetter's is actually 10.99 but... come on
 short_hop_speed     = 12;		// 4    -  7.4
 djump_speed         = 12;		// 6    -  12       absa's is -1 because of her floaty djump

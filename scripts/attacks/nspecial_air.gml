@@ -6,7 +6,7 @@ set_attack_value(AT_NSPECIAL_AIR, AG_OFF_LEDGE, 0);
 set_attack_value(AT_NSPECIAL_AIR, AG_HURTBOX_SPRITE, sprite_get("nspecial_air_hurt"));
 set_attack_value(AT_NSPECIAL_AIR, AG_HURTBOX_AIR_SPRITE, sprite_get("nspecial_air_hurt"));
 
-set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_LENGTH, 27);
+set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_LENGTH, 25);
 set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_ANIM_FRAMES, 8);
 set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_HAS_SFX, 1);
 set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_SFX, sound_get("needle_1"));
@@ -16,7 +16,7 @@ set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_GOTO, 9);
 set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_LENGTH, 6);
 set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_ANIM_FRAMES, 2);
 set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_ANIM_FRAME_START, 8);
-set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_VSPEED, -5);
+set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_VSPEED, -7);
 set_window_value(AT_NSPECIAL_AIR, 2, AG_WINDOW_VSPEED_TYPE, 2);
 
 set_window_value(AT_NSPECIAL_AIR, 3, AG_WINDOW_TYPE, 9);
@@ -24,7 +24,7 @@ set_window_value(AT_NSPECIAL_AIR, 3, AG_WINDOW_LENGTH, 1);
 set_window_value(AT_NSPECIAL_AIR, 3, AG_WINDOW_ANIM_FRAMES, 1);
 set_window_value(AT_NSPECIAL_AIR, 3, AG_WINDOW_ANIM_FRAME_START, 10);
 
-set_window_value(AT_NSPECIAL_AIR, 4, AG_WINDOW_LENGTH, 10);
+set_window_value(AT_NSPECIAL_AIR, 4, AG_WINDOW_LENGTH, 12);
 set_window_value(AT_NSPECIAL_AIR, 4, AG_WINDOW_ANIM_FRAMES, 4);
 set_window_value(AT_NSPECIAL_AIR, 4, AG_WINDOW_ANIM_FRAME_START, 11);
 
