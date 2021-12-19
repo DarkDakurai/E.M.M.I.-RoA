@@ -95,5 +95,10 @@ switch(attack){
 	set_hitbox_value(AT_DSTRONG, 4, HG_DAMAGE, 8 + (plate_state * 2));
 	set_hitbox_value(AT_DSTRONG, 5, HG_DAMAGE, 8 + (plate_state * 2));
 	break;
+	case AT_FSTRONG:
+	if(window == 1){
+		move_cooldown[AT_FSTRONG] = 30;
+	}
+	set_hitbox_value(AT_FSTRONG, 3, HG_DAMAGE, 14 + (plate_state * 2));
 }
 

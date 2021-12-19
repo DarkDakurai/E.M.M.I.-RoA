@@ -51,4 +51,8 @@ switch(attack){
     case AT_DSTRONG:
     set_attack_value(AT_DSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_dstrong"));
     break;
+    case AT_FSTRONG:
+    set_attack_value(AT_FSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_fstrong"));
+    break;
 }
+    
