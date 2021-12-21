@@ -53,7 +53,8 @@ sprite_change_offset("dair", 64, 94);
 sprite_change_offset("0_fstrong", 84, 86);
 sprite_change_offset("1_fstrong", 84, 86);
 
-sprite_change_offset("ustrong", 64, 190);
+sprite_change_offset("0_ustrong", 123, 110);
+sprite_change_offset("1_ustrong", 123, 110);
 
 sprite_change_offset("0_dstrong", 128, 161);
 sprite_change_offset("1_dstrong", 128, 161);
