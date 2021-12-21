@@ -99,6 +99,20 @@ switch(attack){
 	if(window == 1){
 		move_cooldown[AT_FSTRONG] = 30;
 	}
+	set_hitbox_value(AT_FSTRONG, 1, HG_DAMAGE, 10 + (plate_state * 2));
+	set_hitbox_value(AT_FSTRONG, 2, HG_DAMAGE, 12 + (plate_state * 2));
 	set_hitbox_value(AT_FSTRONG, 3, HG_DAMAGE, 14 + (plate_state * 2));
+	break;
+	case AT_USTRONG:
+	if(window == 3 && window_timer == 10){
+		spr_dir *= -1;
+		x += 4 * spr_dir;
+	}
+	move_cooldown[AT_USTRONG] = 20;
+	set_hitbox_value(AT_USTRONG, 1, HG_DAMAGE, 7 + (plate_state * 2));
+	set_hitbox_value(AT_USTRONG, 2, HG_DAMAGE, 7 + (plate_state * 2));
+	set_hitbox_value(AT_USTRONG, 3, HG_DAMAGE, 7 + (plate_state * 2));
+	set_hitbox_value(AT_USTRONG, 4, HG_DAMAGE, 7 + (plate_state * 2));
+	set_hitbox_value(AT_USTRONG, 5, HG_DAMAGE, 7 + (plate_state * 2));
 }
 
