@@ -104,8 +104,8 @@ switch(attack){
 	set_hitbox_value(AT_FSTRONG, 3, HG_DAMAGE, 14 + (plate_state * 2));
 	break;
 	case AT_USTRONG:
-	if(window == 3 && window_timer == 10){
-		spr_dir *= -1;
+	if(window == 3 && window_timer == 10 && wall == 0){
+		spr_dir = (spr_dir = 1? -1: 1);
 		x += 4 * spr_dir;
 	}
 	move_cooldown[AT_USTRONG] = 20;

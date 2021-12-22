@@ -35,4 +35,8 @@ draw_debug_text( 200, 70, "window timer : " + string(window_timer));
 draw_debug_text(  15, 10, "hsp: " + string(hsp));
 draw_debug_text(  15, 25, "vsp: " + string(vsp));
 draw_debug_text(  15, 40, "img ind: " + string(image_index));
+draw_debug_text(  15, 55, "spr_dir: " + string(spr_dir));
+draw_debug_text(  15, 70, "x: " + string(x));
+draw_debug_text(  15, 85, "y: " + string(y));
+draw_debug_text(  15, 100, "free: " + string(free));
 draw_debug_text( 600, 10, "FPS : " + string(fps_real));

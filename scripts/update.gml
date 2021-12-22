@@ -99,7 +99,7 @@ if(attack == AT_EXTRA_1 && climb_timer == get_window_value(AT_EXTRA_1, 1, AG_WIN
         }else if(prev_dir == -1){
             wall = 3;
             x += 104;
-            y += 78;
+            y += 80;
             set_state(PS_IDLE);
         }
     }else if(wall == 2){ // to do
@@ -107,7 +107,7 @@ if(attack == AT_EXTRA_1 && climb_timer == get_window_value(AT_EXTRA_1, 1, AG_WIN
         if(prev_dir == 1){
             wall = 3;
             x -= 104;
-            y += 78;
+            y += 80;
             set_state(PS_IDLE);
         }else if(prev_dir == -1){
             wall = 0;
@@ -118,12 +118,12 @@ if(attack == AT_EXTRA_1 && climb_timer == get_window_value(AT_EXTRA_1, 1, AG_WIN
         climbing = false;
         if(prev_dir == 1){
             wall = 1;
-            x -= 94;
+            x -= 98;
             y -= 86;
             set_state(PS_IDLE);
         }else if (prev_dir == -1){
             wall = 2;
-            x += 96;
+            x += 98;
             y -= 86;
             set_state(PS_IDLE);
         }
@@ -280,7 +280,7 @@ switch(wall){
     sprite_change_offset("1_dash", 80, 58);
     hsp = 15;
     gravity_speed = 0;
-    if(up_down) && place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false{
+    if(up_down) && place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -291,13 +291,12 @@ switch(wall){
             vsp = -4;
             break;
             case 2:
-            
             state = PS_DASH;
             vsp = -6;
             break;
         }
         spr_dir = 1;
-    }else if(down_down) && place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false{
+    }else if(down_down) && place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -313,10 +312,10 @@ switch(wall){
             break;
         }
         spr_dir = -1;
-    }else if place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false{
+    }else if place_meeting(x + 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         state = PS_IDLE;
         vsp = 0;
-    }else if(climbing == false && state != PS_IDLE && state != PS_WALK && state != PS_DASH){
+    }else if(climbing == false && state != PS_IDLE && state != PS_WALK && state != PS_DASH && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
         wall = 0;
     }
     if(up_down){
@@ -339,6 +338,33 @@ switch(wall){
             set_attack(AT_EXTRA_2);
             climbing = true;
         }
+    }
+    //this enables tilts and strongs on walls
+    if(state != PS_ATTACK_AIR){
+        if(strong_down){
+            if(left_down){
+                set_attack(AT_USTRONG);
+            }else if(right_down){
+                set_attack(AT_DSTRONG);
+            }else if(up_down || down_down || strong_down){
+                set_attack(AT_FSTRONG);
+            }
+        }
+    }
+    if(state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
+        if(attack_down){
+            if(left_down){
+                set_attack(AT_UTILT);
+            }else if(right_down){
+                set_attack(AT_DTILT);
+            }else if(up_down || down_down){
+                set_attack(AT_FTILT);
+            }else{
+                set_attack(AT_JAB);
+            }
+        }
+    }else{
+        vsp = 0;
     }
     break;
     
@@ -379,7 +405,7 @@ switch(wall){
     sprite_change_offset("1_dash", 80, 58);
     hsp = -15;
     gravity_speed = 0;
-    if(down_down) && place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false{
+    if(down_down) && place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -395,7 +421,7 @@ switch(wall){
             break;
         }
         spr_dir = 1;
-    }else if(up_down) && place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false{
+    }else if(up_down) && place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -411,7 +437,7 @@ switch(wall){
             break;
         }
         spr_dir = -1;
-    }else if place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false{
+    }else if place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         state = PS_IDLE;
         vsp = 0;
     }
@@ -435,6 +461,33 @@ switch(wall){
             set_attack(AT_EXTRA_2);
             climbing = true;
         }
+    }
+    //this enables tilts and strongs on walls
+    if(state != PS_ATTACK_AIR){
+        if(strong_down){
+            if(left_down){
+                set_attack(AT_DSTRONG);
+            }else if(right_down){
+                set_attack(AT_USTRONG);
+            }else if(up_down || down_down || strong_down){
+                set_attack(AT_FSTRONG);
+            }
+        }
+    }
+    if(state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
+        if(attack_down){
+            if(left_down){
+                set_attack(AT_DTILT);
+            }else if(right_down){
+                set_attack(AT_UTILT);
+            }else if(up_down || down_down){
+                set_attack(AT_FTILT);
+            }else{
+                set_attack(AT_JAB);
+            }
+        }
+    }else{
+        vsp = 0;
     }
     break;
     
@@ -469,7 +522,7 @@ switch(wall){
     sprite_change_offset("1_dash", 80, 67);
     gravity_speed = 0;
     vsp = -15;
-    if(left_down) && place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false{
+    if(left_down) && place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -485,7 +538,7 @@ switch(wall){
             break;
         }
         spr_dir = 1;
-    }else if(right_down) && place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false{
+    }else if(right_down) && place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         switch(anger_state){
             case 0:
             state = PS_WALK;
@@ -501,7 +554,7 @@ switch(wall){
             break;
         }
         spr_dir = -1;
-    }else if place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false{
+    }else if place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         state = PS_IDLE;
         hsp = 0;
     }
@@ -526,7 +579,48 @@ switch(wall){
             climbing = true;
         }
     }
+    //this enables tilts and strongs on walls
+    if(state != PS_ATTACK_AIR){
+        if(strong_down){
+            if(down_down){
+                set_attack(AT_USTRONG);
+            }else if(up_down){
+                set_attack(AT_DSTRONG);
+            }else if(left_down || right_down || strong_down){
+                set_attack(AT_FSTRONG);
+            }
+        }
+    }
+    if(state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
+        if(attack_down){
+            if(down_down){
+                set_attack(AT_UTILT);
+            }else if(up_down){
+                set_attack(AT_DTILT);
+            }else if(left_down || right_down){
+                set_attack(AT_FTILT);
+            }else{
+                set_attack(AT_JAB);
+            }
+        }
+    }else{
+        hsp = 0;
+    }
     break;
+}
+
+//aerial disable
+if(wall != 0){
+    move_cooldown[AT_NAIR] = 10;
+    move_cooldown[AT_FAIR] = 10;
+    move_cooldown[AT_BAIR] = 10;
+    move_cooldown[AT_DAIR] = 10;
+    move_cooldown[AT_UAIR] = 10;
+    move_cooldown[AT_NSPECIAL] = 10;
+    move_cooldown[AT_FSPECIAL] = 10;
+    move_cooldown[AT_NSPECIAL_AIR] = 10;
+    move_cooldown[AT_DSPECIAL] = 10;
+    move_cooldown[AT_USPECIAL] = 10;
 }
 
 //anim timer for wall stuff
