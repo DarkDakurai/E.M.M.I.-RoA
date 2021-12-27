@@ -201,6 +201,11 @@ grab_x = 0;
 grab_y = 0;
 hit = false;
 
+//fspecial variables
+ice_victim = noone;
+ice_size = false;
+ice_1 = 0;
+
 /*empty attack list
 AT_NSPECIAL_2
 AT_NSPECIAL_AIR

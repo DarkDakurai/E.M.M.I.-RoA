@@ -715,6 +715,35 @@ if(attack == AT_NSPECIAL && free){
     hurtboxID.sprite_index = sprite_get("nspecial_air_hurt");
 }
 
+//fspecial
+if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
+    move_cooldown[AT_FSPECIAL] = 90;
+    ice_victim.state = PS_HITSTUN;
+    ice_victim.state_timer = 0;
+    if(ice_size == false){
+        ice_victim.hitstop = 100;
+        ice_size = true;
+        ice_victim.y -= 0.1;
+        ice_1 = 100;
+        instance_create(floor(ice_victim.x + 10), floor(ice_victim.y - 20), "obj_article1");
+        ice_1 = 133;
+        instance_create(floor(ice_victim.x - 40), floor(ice_victim.y - 40), "obj_article1");
+        ice_1 = 166;
+        instance_create(floor(ice_victim.x + 10), floor(ice_victim.y - 70), "obj_article1");
+    }
+    ice_victim.hsp = 0;
+    ice_victim.vsp = 0;
+    ice_victim.hitstun = true;
+    if(ice_victim.hitstop == 0){
+        ice_victim.emmi_frozen = false;
+    }
+}else{
+    ice_size = false;
+    if(instance_exists(obj_article1)){
+        instance_destroy(obj_article1);
+    }
+}
+
 //constant variables
 visible = true;
 has_walljump = false;

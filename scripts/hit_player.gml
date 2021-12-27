@@ -1,3 +1,5 @@
+hit_player_obj.emmi_frozen = false;
+
 switch(attack){
     case AT_NSPECIAL:
     hit = true;
@@ -24,5 +26,9 @@ switch(attack){
         set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_GOTO, 8);
         set_attack_value(AT_NSPECIAL_AIR, AG_NUM_WINDOWS, 9);
     }
+    break;
+    case AT_FSPECIAL:
+    ice_victim = hit_player_obj;
+    hit_player_obj.emmi_frozen = true;
     break;
 }

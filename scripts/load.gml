@@ -66,7 +66,9 @@ sprite_change_offset("0_nspecial_air", 77, 160);
 sprite_change_offset("1_nspecial_air", 77, 160);
 sprite_change_offset("nspecial_air_hurt", 154, 320);
 
-sprite_change_offset("fspecial", 64, 94);
+sprite_change_offset("0_fspecial", 84, 85);
+sprite_change_offset("1_fspecial", 84, 85);
+
 sprite_change_offset("uspecial", 96, 126);
 sprite_change_offset("dspecial", 64, 94);
 sprite_change_offset("taunt", 64, 94);

@@ -317,4 +317,11 @@ switch(attack){
         set_hitbox_value(AT_USTRONG, 5, HG_HITBOX_Y, 118);
         break;
     }
+    break;
+    case AT_FSPECIAL:
+    set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial"));
+    if(free){
+        move_cooldown[AT_FSPECIAL] += 1;
+    }
+    break;
 }
