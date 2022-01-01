@@ -39,4 +39,6 @@ draw_debug_text(  15, 55, "spr_dir: " + string(spr_dir));
 draw_debug_text(  15, 70, "x: " + string(x));
 draw_debug_text(  15, 85, "y: " + string(y));
 draw_debug_text(  15, 100, "free: " + string(free));
+draw_debug_text(  15, 115, "attack pressed : " + string(attack_pressed));
+draw_debug_text(  15, 130, "attack down : " + string(attack_down));
 draw_debug_text( 600, 10, "FPS : " + string(fps_real));

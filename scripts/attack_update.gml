@@ -123,6 +123,35 @@ switch(attack){
 	set_hitbox_value(AT_FSPECIAL, 2, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
+	case AT_JAB:
+	
+	//makes the spinny spinny
+	if(attack_down && window == 5){
+		set_window_value(AT_JAB, 5, AG_WINDOW_TYPE, 9);
+	}else{
+		set_window_value(AT_JAB, 5, AG_WINDOW_TYPE, 0);
+	}
+	
+	//better cancel
+	if(attack_pressed || attack_down){
+		if(window == 1 && window_timer >= 15){
+			set_window_value(AT_JAB, 2, AG_WINDOW_CANCEL_TYPE, 0);
+		}else{
+			set_window_value(AT_JAB, 2, AG_WINDOW_CANCEL_TYPE, 1);
+		}
+		if(window == 2 && window_timer >= 9){
+			set_window_value(AT_JAB, 4, AG_WINDOW_CANCEL_TYPE, 0);
+		}else{
+			set_window_value(AT_JAB, 4, AG_WINDOW_CANCEL_TYPE, 1);
+		}
+	}
+	set_hitbox_value(AT_JAB, 1, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_JAB, 2, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_JAB, 3, HG_DAMAGE, 1 + anger_state);
+	set_hitbox_value(AT_JAB, 4, HG_DAMAGE, 1 + anger_state);
+	set_hitbox_value(AT_JAB, 5, HG_DAMAGE, 1 + anger_state);
+	set_hitbox_value(AT_JAB, 6, HG_DAMAGE, 4 + (anger_state * 2));
+	break;
 }
 
 //sprite changes
