@@ -67,5 +67,6 @@ set_hitbox_value(AT_FSTRONG, 3, HG_BASE_KNOCKBACK, 10);
 set_hitbox_value(AT_FSTRONG, 3, HG_KNOCKBACK_SCALING, 1.1);
 set_hitbox_value(AT_FSTRONG, 3, HG_BASE_HITPAUSE, 20);
 set_hitbox_value(AT_FSTRONG, 3, HG_HITPAUSE_SCALING, 1.5);
+set_hitbox_value(AT_FSTRONG, 3, HG_EXTRA_CAMERA_SHAKE, 1);
 //set_hitbox_value(AT_FSTRONG, 3, HG_HIT_SFX, asset_get("sfx_burnconsume")); //to change
 

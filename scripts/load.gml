@@ -43,7 +43,10 @@ sprite_change_offset("0_jab", 84, 86);
 sprite_change_offset("1_jab", 84, 86);
 
 sprite_change_offset("dattack", 64, 94);
-sprite_change_offset("ftilt", 32, 62);
+
+sprite_change_offset("0_ftilt", 102, 80);
+sprite_change_offset("1_ftilt", 102, 80);
+
 sprite_change_offset("dtilt", 64, 94);
 sprite_change_offset("utilt", 64, 94);
 sprite_change_offset("nair", 64, 94);

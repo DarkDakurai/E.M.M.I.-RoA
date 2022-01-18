@@ -206,6 +206,9 @@ ice_victim = noone;
 ice_size = false;
 ice_1 = 0;
 
+//ftilt variables
+ftilt_cancel = 0;
+
 /*empty attack list
 AT_NSPECIAL_2
 AT_NSPECIAL_AIR

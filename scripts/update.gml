@@ -274,8 +274,8 @@ switch(wall){
     sprite_change_offset("climb2_hurt", 174, 182);
     sprite_change_offset("0_idle", 81, 69);
     sprite_change_offset("1_idle", 81, 69);
-    sprite_change_offset("0_walk", 42, 26);
-    sprite_change_offset("1_walk", 42, 26);
+    sprite_change_offset("0_walk", 42, 27);
+    sprite_change_offset("1_walk", 42, 27);
     sprite_change_offset("0_dash", 80, 58);
     sprite_change_offset("1_dash", 80, 58);
     hsp = 15;
@@ -399,8 +399,8 @@ switch(wall){
     sprite_change_offset("climb2_hurt", 174, 182);
     sprite_change_offset("0_idle", 81, 69);
     sprite_change_offset("1_idle", 81, 69);
-    sprite_change_offset("0_walk", 42, 26);
-    sprite_change_offset("1_walk", 42, 26);
+    sprite_change_offset("0_walk", 42, 27);
+    sprite_change_offset("1_walk", 42, 27);
     sprite_change_offset("0_dash", 80, 58);
     sprite_change_offset("1_dash", 80, 58);
     hsp = -15;

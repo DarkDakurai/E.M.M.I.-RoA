@@ -444,6 +444,76 @@ switch(attack){
         break;
     }
     break;
+    
+    case AT_FTILT:
+    set_attack_value(AT_FTILT, AG_SPRITE, sprite_get(string(plate_state) + "_ftilt"));
+    ftilt_cancel = 0;
+    if(wall == 0 || wall == 3){
+        sprite_change_offset("0_ftilt", 102, 80);
+        sprite_change_offset("1_ftilt", 102, 80);
+    }else{
+        sprite_change_offset("0_ftilt", 103, 71);
+        sprite_change_offset("1_ftilt", 103, 71);
+    }
+    set_hitbox_value(AT_FTILT, 1, HG_ANGLE, 50 + ((wall > 1? (wall = 3? 2: 3): wall) * 90) * spr_dir);
+    set_hitbox_value(AT_FTILT, 2, HG_ANGLE, 60 + ((wall > 1? (wall = 3? 2: 3): wall) * 90) * spr_dir);
+    set_hitbox_value(AT_FTILT, 3, HG_ANGLE, 70 + ((wall > 1? (wall = 3? 2: 3): wall) * 90) * spr_dir);
+    set_hitbox_value(AT_FTILT, 4, HG_ANGLE, 45 + ((wall > 1? (wall = 3? 2: 3): wall) * 90) * spr_dir);
+    switch(wall){
+        case 0:
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_Y, -35);
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_X, 60);
+        
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_Y, -35);
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_X, 90);
+        
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_Y, -35);
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_X, 130);
+        
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_Y, -35);
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_X, 130);
+        break;
+        case 1:
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_X, -19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_Y, -60 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_X, -19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_Y, -90 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_X, -19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_Y, -130 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_X, -19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_Y, -130 * spr_dir);
+        break;
+        case 2:
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_X, 19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_Y, 60 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_X, 19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_Y, 90 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_X, 19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_Y, 130 * spr_dir);
+        
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_X, 19 * spr_dir);
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_Y, 130 * spr_dir);
+        break;
+        case 3:
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_Y, 35);
+        set_hitbox_value(AT_FTILT, 1, HG_HITBOX_X, -60);
+        
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_Y, 35);
+        set_hitbox_value(AT_FTILT, 2, HG_HITBOX_X, -90);
+        
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_Y, 35);
+        set_hitbox_value(AT_FTILT, 3, HG_HITBOX_X, -130);
+        
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_Y, 35);
+        set_hitbox_value(AT_FTILT, 4, HG_HITBOX_X, -130);
+        break;
+    }
+    break;
 }
 
 

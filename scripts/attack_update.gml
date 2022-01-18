@@ -152,6 +152,21 @@ switch(attack){
 	set_hitbox_value(AT_JAB, 5, HG_DAMAGE, 1 + anger_state);
 	set_hitbox_value(AT_JAB, 6, HG_DAMAGE, 4 + (anger_state * 2));
 	break;
+	
+	case AT_FTILT:
+	if(window == 2 && ftilt_cancel == 0 && attack_pressed){
+		ftilt_cancel = 1;
+	}
+	if(ftilt_cancel == 1){
+		set_window_value(AT_FTILT, 2, AG_WINDOW_GOTO, 3);
+	}else{
+		set_window_value(AT_FTILT, 2, AG_WINDOW_GOTO, 4);
+	}
+	set_hitbox_value(AT_FTILT, 1, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_FTILT, 2, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_FTILT, 3, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_FTILT, 4, HG_DAMAGE, 6 + (anger_state * 2));
+	break;
 }
 
 //sprite changes
@@ -161,5 +176,6 @@ set_attack_value(AT_FSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_fstro
 set_attack_value(AT_USTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_ustrong"));
 set_attack_value(AT_NSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
 set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial"));
+set_attack_value(AT_FTILT, AG_SPRITE, sprite_get(string(plate_state) + "_ftilt"));
 
 

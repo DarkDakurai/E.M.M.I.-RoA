@@ -81,3 +81,4 @@ set_hitbox_value(AT_NSPECIAL, 2, HG_BASE_KNOCKBACK, 6);
 set_hitbox_value(AT_NSPECIAL, 2, HG_KNOCKBACK_SCALING, 0.8);
 set_hitbox_value(AT_NSPECIAL, 2, HG_BASE_HITPAUSE, 20);
 set_hitbox_value(AT_NSPECIAL, 2, HG_HIT_SFX, sound_get("needle_2"));
+set_hitbox_value(AT_NSPECIAL, 2, HG_EXTRA_CAMERA_SHAKE, 1);
