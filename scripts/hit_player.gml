@@ -1,4 +1,11 @@
-hit_player_obj.emmi_frozen = false;
+if(hit_player_obj.emmi_frozen == true){
+    hit_player_obj.emmi_frozen = false;
+    for(a = -2; a <= 2; a += 0.8){
+        set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_HSPEED, ((hit_player_obj.hsp * (2/3)) + a) * -1);
+        set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_VSPEED, hit_player_obj.hsp * 1.5 + a);
+        create_hitbox(AT_DSTRONG_2, 1, floor(hit_player_obj.x), floor(hit_player_obj.y + (a * 10)));
+    }
+}
 
 switch(attack){
     case AT_NSPECIAL:
