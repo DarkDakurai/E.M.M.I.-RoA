@@ -209,6 +209,15 @@ ice_1 = 0;
 //ftilt variables
 ftilt_cancel = 0;
 
+//dspecial variables
+orb_level = 0;
+fire = 0;
+hit_small = hit_fx_create(sprite_get("orb_hit_small"), 12);
+hit_med = hit_fx_create(sprite_get("orb_hit_med"), 14);
+hit_big = hit_fx_create(sprite_get("orb_hit_big"), 20);
+shock_victim = noone;
+emmi_shock_timer = 0;
+
 /*empty attack list
 AT_NSPECIAL_2
 AT_NSPECIAL_AIR

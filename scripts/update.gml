@@ -744,6 +744,17 @@ if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
     }
 }
 
+//dspecial
+if(instance_exists(shock_victim) && shock_victim.emmi_shocked == true){
+    move_cooldown[AT_DSPECIAL] = 120;
+    shock_victim.state_timer = 0;
+    shock_victim.hitstun = true;
+    emmi_shock_timer--;
+    if(emmi_shock_timer == 0){
+        shock_victim.emmi_shocked = false;
+    }
+}
+
 //constant variables
 visible = true;
 has_walljump = false;

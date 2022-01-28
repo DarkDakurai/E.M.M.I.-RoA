@@ -2,9 +2,14 @@ if(hit_player_obj.emmi_frozen == true){
     hit_player_obj.emmi_frozen = false;
     for(a = -2; a <= 2; a += 0.8){
         set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_HSPEED, ((hit_player_obj.hsp * (2/3)) + a) * -1);
-        set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_VSPEED, hit_player_obj.hsp * 1.5 + a);
+        set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_VSPEED, hit_player_obj.vsp * 1.5 + a);
+        set_hitbox_value(AT_DSTRONG_2, 1, HG_PROJECTILE_ANIM_SPEED, a / 2);
         create_hitbox(AT_DSTRONG_2, 1, floor(hit_player_obj.x), floor(hit_player_obj.y + (a * 10)));
     }
+}
+
+if(hit_player_obj.emmi_shocked == true){
+    emmi_shocked = false;
 }
 
 switch(attack){
@@ -37,5 +42,20 @@ switch(attack){
     case AT_FSPECIAL:
     ice_victim = hit_player_obj;
     hit_player_obj.emmi_frozen = true;
+    break;
+    case AT_DSPECIAL:
+    shock_victim = hit_player_obj;
+    hit_player_obj.emmi_shocked = true;
+    switch(orb_level){
+        case 0:
+        emmi_shock_timer = 90;
+        break;
+        case 1:
+        emmi_shock_timer = 120;
+        break;
+        case 2:
+        emmi_shock_timer = 150;
+        break;
+    }
     break;
 }

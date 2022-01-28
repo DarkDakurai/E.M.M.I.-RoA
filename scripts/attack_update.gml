@@ -123,6 +123,83 @@ switch(attack){
 	set_hitbox_value(AT_FSPECIAL, 2, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
+	case AT_DSPECIAL:
+	if(window == 4 && window_timer >= 17){
+		move_cooldown[AT_DSPECIAL] = 120;
+	}
+	if(!special_down && (window == 2 || window == 3) && (window == 2? window_timer >= 30 : window_timer >= 0)){
+		window = 5;
+		window_timer = 0;
+	}
+	if(window == 2){
+		if(window_timer <= 40){
+			orb_level = 0;
+			fire = 1;
+		}else{
+			orb_level = 1;
+			fire = 1;
+		}
+	}else if(window == 3){
+		orb_level = 2;
+		fire = 1;
+	}
+	if(fire == 1 && window == 1){
+		window = 4;
+		window_timer = 0;
+		fire = 0;
+	}
+	if(window == 4 && window_timer < 15){
+		switch(orb_level){
+			case 0:
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_SPRITE, sprite_get("orb_small"));
+			var best_target = noone;
+			with (oPlayer) if self != other { best_target = self };
+			var enemy_dir = point_direction(x + 66, y, best_target.x, best_target.y);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_HSPEED, sin(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8 * spr_dir);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_VSPEED, cos(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_ANIM_SPEED, 0.5);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_Y, -38);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_WIDTH, 40);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HEIGHT, 40);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_DAMAGE, 4 + (anger_state * 2));
+			set_hitbox_value(AT_DSPECIAL, 1, HG_VISUAL_EFFECT, hit_small);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_DESTROY_EFFECT, hit_small);
+			break;
+			
+			case 1:
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_SPRITE, sprite_get("orb_med"));
+			var best_target = noone;
+			with (oPlayer) if self != other { best_target = self };
+			var enemy_dir = point_direction(x + 66, y, best_target.x, best_target.y);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_HSPEED, sin(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8 * spr_dir);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_VSPEED, cos(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_ANIM_SPEED, 0.4);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_Y, -42);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_WIDTH, 50);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HEIGHT, 50);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_DAMAGE, 6 + (anger_state * 2));
+			set_hitbox_value(AT_DSPECIAL, 1, HG_VISUAL_EFFECT, hit_med);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_DESTROY_EFFECT, hit_med);
+			break;
+			
+			case 2:
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_SPRITE, sprite_get("orb_big"));
+			var best_target = noone;
+			with (oPlayer) if self != other { best_target = self };
+			var enemy_dir = point_direction(x + 66, y, best_target.x, best_target.y);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_HSPEED, sin(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8 * spr_dir);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_VSPEED, cos(degtorad(angle_difference(enemy_dir, 0) + 90)) * 8);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_ANIM_SPEED, 0.3);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HITBOX_Y, -42);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_WIDTH, 60);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_HEIGHT, 60);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_DAMAGE, 8 + (anger_state * 2));
+			set_hitbox_value(AT_DSPECIAL, 1, HG_VISUAL_EFFECT, hit_big);
+			set_hitbox_value(AT_DSPECIAL, 1, HG_PROJECTILE_DESTROY_EFFECT, hit_big);
+			break;
+		}
+	}
+	break;
 	case AT_JAB:
 	
 	//makes the spinny spinny

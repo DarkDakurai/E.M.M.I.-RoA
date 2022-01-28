@@ -514,6 +514,13 @@ switch(attack){
         break;
     }
     break;
+    
+    case AT_DSPECIAL:
+    set_attack_value(AT_DSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial"));
+    if(free){
+        move_cooldown[AT_DSPECIAL] = 1;
+    }
+    break;
 }
 
 
