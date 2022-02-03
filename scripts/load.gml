@@ -73,11 +73,15 @@ sprite_change_offset("nspecial_air_hurt", 154, 320);
 
 sprite_change_offset("0_fspecial", 84, 85);
 sprite_change_offset("1_fspecial", 84, 85);
+sprite_change_offset("0_fspecial_air", 69, 138);
+sprite_change_offset("1_fspecial_air", 69, 138);
 
 sprite_change_offset("uspecial", 96, 126);
 
 sprite_change_offset("0_dspecial", 81, 98);
 sprite_change_offset("1_dspecial", 81, 98);
+sprite_change_offset("0_dspecial_air", 69, 138);
+sprite_change_offset("1_dspecial_air", 69, 138);
 sprite_change_offset("orb_small", 46, 50);
 sprite_change_offset("orb_hit_small", 46, 50);
 sprite_change_offset("orb_med", 59, 67);

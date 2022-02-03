@@ -123,6 +123,12 @@ switch(attack){
 	set_hitbox_value(AT_FSPECIAL, 2, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
+	case AT_FSPECIAL_AIR:
+	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 8 + (plate_state * 2));
+	break;
+	case AT_DSPECIAL_AIR:
+	set_hitbox_value(AT_DSPECIAL_AIR, 1, HG_DAMAGE, 6 + (plate_state * 2));
+	break;
 	case AT_DSPECIAL:
 	if(window == 4 && window_timer >= 17){
 		move_cooldown[AT_DSPECIAL] = 120;
@@ -254,5 +260,7 @@ set_attack_value(AT_USTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_ustro
 set_attack_value(AT_NSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
 set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial"));
 set_attack_value(AT_FTILT, AG_SPRITE, sprite_get(string(plate_state) + "_ftilt"));
+set_attack_value(AT_FSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial_air"));
+set_attack_value(AT_DSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial_air"));
 
 

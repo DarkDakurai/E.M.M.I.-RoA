@@ -321,9 +321,6 @@ switch(attack){
     
     case AT_FSPECIAL:
     set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial"));
-    if(free){
-        move_cooldown[AT_FSPECIAL] += 1;
-    }
     break;
     
     case AT_JAB:
@@ -517,9 +514,6 @@ switch(attack){
     
     case AT_DSPECIAL:
     set_attack_value(AT_DSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial"));
-    if(free){
-        move_cooldown[AT_DSPECIAL] = 1;
-    }
     break;
 }
 

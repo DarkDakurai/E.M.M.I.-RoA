@@ -43,7 +43,12 @@ switch(attack){
     ice_victim = hit_player_obj;
     hit_player_obj.emmi_frozen = true;
     break;
-    case AT_DSPECIAL:
+    case AT_FSPECIAL_AIR:
+    ice_victim = hit_player_obj;
+    hit_player_obj.emmi_frozen = true;
+    break;
+}
+if(my_hitboxID.attack == AT_DSPECIAL){
     shock_victim = hit_player_obj;
     hit_player_obj.emmi_shocked = true;
     switch(orb_level){
@@ -57,5 +62,8 @@ switch(attack){
         emmi_shock_timer = 150;
         break;
     }
-    break;
+}else if(my_hitboxID.attack == AT_DSPECIAL_AIR){
+    shock_victim = hit_player_obj;
+    hit_player_obj.emmi_shocked = true;
+    emmi_shock_timer = 40;
 }

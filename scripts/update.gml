@@ -716,6 +716,10 @@ if(attack == AT_NSPECIAL && free){
 }
 
 //fspecial
+if(attack == AT_FSPECIAL && free){
+    attack = AT_FSPECIAL_AIR;
+    hurtboxID.sprite_index = sprite_get("fspecial_air_hurt");
+}
 if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
     move_cooldown[AT_FSPECIAL] = 90;
     ice_victim.state = PS_HITSTUN;
@@ -745,6 +749,10 @@ if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
 }
 
 //dspecial
+if(attack == AT_DSPECIAL && free){
+    attack = AT_DSPECIAL_AIR;
+    hurtboxID.sprite_index = sprite_get("dspecial_air_hurt");
+}
 if(instance_exists(shock_victim) && shock_victim.emmi_shocked == true){
     move_cooldown[AT_DSPECIAL] = 120;
     shock_victim.state_timer = 0;
@@ -752,6 +760,7 @@ if(instance_exists(shock_victim) && shock_victim.emmi_shocked == true){
     emmi_shock_timer--;
     if(emmi_shock_timer == 0){
         shock_victim.emmi_shocked = false;
+        shock_victim.sprite_xoffset = 0;
     }
 }
 
