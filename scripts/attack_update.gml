@@ -125,9 +125,17 @@ switch(attack){
 	break;
 	case AT_FSPECIAL_AIR:
 	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 8 + (plate_state * 2));
+	if(!free){
+		state = PS_LAND;
+		state_timer = 0;
+	}
 	break;
 	case AT_DSPECIAL_AIR:
 	set_hitbox_value(AT_DSPECIAL_AIR, 1, HG_DAMAGE, 6 + (plate_state * 2));
+	if(!free){
+		state = PS_LAND;
+		state_timer = 0;
+	}
 	break;
 	case AT_DSPECIAL:
 	if(window == 4 && window_timer >= 17){
@@ -249,6 +257,80 @@ switch(attack){
 	set_hitbox_value(AT_FTILT, 2, HG_DAMAGE, 4 + (anger_state * 2));
 	set_hitbox_value(AT_FTILT, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FTILT, 4, HG_DAMAGE, 6 + (anger_state * 2));
+	break;
+	
+	case AT_USPECIAL:
+	on_cooldown = 1;
+	fall_through = true;
+	can_fast_fall = false;
+	if(window == 2){
+		if(joy_dir >= -22.5 && joy_dir < 22.5){
+			head_rot = (spr_dir = 1? 0: 4);
+		}else if(joy_dir >= 22.5 && joy_dir < 67.5){
+			head_rot = (spr_dir = 1? 1: 3);
+		}else if(joy_dir >= 67.5 && joy_dir < 112.5){
+			head_rot = 2
+		}else if(joy_dir >= 112.5 && joy_dir < 157.5){
+			head_rot = (spr_dir = 1? 3: 1);
+		}else if(joy_dir >= 157.5 && joy_dir < 202.5){
+			head_rot = (spr_dir = 1? 4: 0);
+		}else if(joy_dir >= 202.5 && joy_dir < 247.5){
+			head_rot = (spr_dir = 1? 5: 7);
+		}else if(joy_dir >= 247.5 && joy_dir < 292.5){
+			head_rot = 6;
+		}else if(joy_dir >= 292.5 && joy_dir < 337.5){
+			head_rot = (spr_dir = 1? 7: 5);
+		}
+		stored_head = head_rot;
+	}
+	if(window == 4){
+		if(collision_point(x + 21, y, asset_get("solid_32_obj"), false, true) && (spr_dir = 1? (head_rot == 1 || head_rot == 0 || head_rot == 7): (head_rot == 3 || head_rot == 4 || head_rot == 5))){
+			window = 7;
+			window_timer = 0;
+			temp_wall = 1;
+		}else if(collision_point(x, y - 33, asset_get("solid_32_obj"), false, true) && (head_rot == 1 || head_rot == 2 || head_rot == 3)){
+			window = 8;
+			window_timer = 0;
+			temp_wall = 3;
+		}else if(collision_point(x - 21, y, asset_get("solid_32_obj"), false, true) && (spr_dir = 1? (head_rot == 3 || head_rot == 4 || head_rot == 5): (head_rot == 1 || head_rot == 0 || head_rot == 7))){
+			window = 7;
+			window_timer = 0;
+			temp_wall = 2;
+		}else if(collision_point(x, y + 33, asset_get("solid_32_obj"), false, true) && (head_rot == 5 || head_rot == 6 || head_rot == 7)){
+			window = 8;
+			window_timer = 0;
+			temp_wall = 0;
+		}
+	}
+	if(window > 4 && window < 9){
+		wall = temp_wall;
+		if(window_timer == 1){
+			switch(temp_wall){
+			case 0:
+			set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 8);
+			y += 32;
+			spr_dir = 1;
+			break;
+			case 1:
+			set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 7);
+			x += 12;
+			spr_dir = 1;
+			break;
+			case 2:
+			set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 7);
+			x -= 22;
+			spr_dir = 1;
+			break;
+			case 3:
+			set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 8);
+			y -= 16;
+			spr_dir = 1;
+			break;
+			}
+		}
+	}else{
+		set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 9);
+	}
 	break;
 }
 

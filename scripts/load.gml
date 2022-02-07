@@ -76,7 +76,14 @@ sprite_change_offset("1_fspecial", 84, 85);
 sprite_change_offset("0_fspecial_air", 69, 138);
 sprite_change_offset("1_fspecial_air", 69, 138);
 
-sprite_change_offset("uspecial", 96, 126);
+sprite_change_offset("0_uspecial", 136, 186);
+sprite_change_offset("1_uspecial", 136, 186);
+sprite_change_offset("0_uspecial_head_0", 136, 186);
+sprite_change_offset("0_uspecial_head_1", 136, 186);
+sprite_change_offset("0_uspecial_head_2", 136, 186);
+sprite_change_offset("1_uspecial_head_0", 136, 186);
+sprite_change_offset("1_uspecial_head_1", 136, 186);
+sprite_change_offset("1_uspecial_head_2", 136, 186);
 
 sprite_change_offset("0_dspecial", 81, 98);
 sprite_change_offset("1_dspecial", 81, 98);
@@ -98,6 +105,7 @@ sprite_change_offset("nspecial_proj", 64, 94);
 sprite_change_offset("hurtboxxy_crouch", 82, 64);
 sprite_change_offset("hurtboxxy_air", 62, 114);
 sprite_change_offset("hurtboxxy_wall_air", 82, 114);
+sprite_change_offset("hurtboxxy_uspecial", 20, 32);
 
 sprite_change_offset("0_climb1", 85, 151);
 sprite_change_offset("1_climb1", 85, 151);

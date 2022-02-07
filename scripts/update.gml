@@ -202,8 +202,50 @@ switch(wall){
     }else{
         mask_index = sprite_get("hurtboxxy_wall");
     }
-    spr_angle = 0;
-    gravity_speed = 0.5;
+    if(attack == AT_USPECIAL && window == 4){
+        mask_index = sprite_get("hurtboxxy_uspecial");
+        hurtboxID.sprite_index = sprite_get("hurtboxxy_uspecial");
+        switch(stored_head){
+			case 0:
+			spr_angle = (spr_dir = 1? -90: 90);
+			break;
+			case 1:
+			spr_angle = (spr_dir = 1? -45: 45);
+			break;
+			case 2:
+			spr_angle = 0;
+			break;
+			case 3:
+			spr_angle = (spr_dir = 1? 45: -45);
+			break;
+			case 4:
+			spr_angle = (spr_dir = 1? 90: -90);
+			break;
+			case 5:
+			spr_angle = (spr_dir = 1? 135: 225);
+			break;
+			case 6:
+			spr_angle = 180;
+			break;
+			case 7:
+			spr_angle = (spr_dir = 1? 225: 135);
+			break;
+		}
+		set_window_value(AT_USPECIAL, 4, AG_WINDOW_HSPEED, cos(degtorad(spr_angle - 90)) * 40 * spr_dir * -1);
+		set_window_value(AT_USPECIAL, 4, AG_WINDOW_VSPEED, sin(degtorad(spr_angle - 90)) * 40);
+		gravity_speed = 0;
+		if(window_timer == 1){
+			y -= 20;
+			x -= 40 * spr_dir;
+		}
+    }else if(window > 4 && attack == AT_USPECIAL){
+		if(window_timer == 1){
+			spr_angle = 0;
+		}
+    }else{
+        spr_angle = 0;
+        gravity_speed = 0.5;
+    }
     sprite_change_offset("0_climb1", 84, 151);
     sprite_change_offset("1_climb1", 84, 151);
     sprite_change_offset("climb1_hurt", 168, 302);
@@ -236,7 +278,7 @@ switch(wall){
             set_attack(AT_EXTRA_2);
             climbing = true;
         }
-    }else if(up_down && position_meeting(x + 70, y - 115, asset_get("solid_32_obj")) && position_meeting(x - 70, y - 115, asset_get("solid_32_obj")) && climbing == false){
+    }else if(up_down && position_meeting(x + 70, y - 115, asset_get("solid_32_obj")) && position_meeting(x - 70, y - 115, asset_get("solid_32_obj")) && climbing == false && (state == PS_IDLE_AIR || state == PS_DOUBLE_JUMP || state == PS_FIRST_JUMP)){
         set_attack_value(AT_EXTRA_3, AG_SPRITE, sprite_get(string(plate_state) + "_climb3"));
         set_attack(AT_EXTRA_3);
         climbing = true;
@@ -440,6 +482,8 @@ switch(wall){
     }else if place_meeting(x - 4, y, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         state = PS_IDLE;
         vsp = 0;
+    }else if(climbing == false && state != PS_IDLE && state != PS_WALK && state != PS_DASH && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
+        wall = 0;
     }
     if(up_down){
         if(place_meeting(x, y - 2, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START)){
@@ -557,6 +601,8 @@ switch(wall){
     }else if place_meeting(x, y - 4, asset_get("solid_32_obj")) && climbing == false && state != PS_ATTACK_AIR && state != PS_ATTACK_GROUND{
         state = PS_IDLE;
         hsp = 0;
+    }else if(climbing == false && state != PS_IDLE && state != PS_WALK && state != PS_DASH && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
+        wall = 0;
     }
     if(right_down){
         if(place_meeting(x + 2, y, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START)){
@@ -762,6 +808,14 @@ if(instance_exists(shock_victim) && shock_victim.emmi_shocked == true){
         shock_victim.emmi_shocked = false;
         shock_victim.sprite_xoffset = 0;
     }
+}
+
+//uspecial
+if(on_cooldown == 1){
+	move_cooldown[AT_USPECIAL] = 2;
+}
+if(!free){
+    on_cooldown = 0;
 }
 
 //constant variables

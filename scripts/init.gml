@@ -218,6 +218,12 @@ hit_big = hit_fx_create(sprite_get("orb_hit_big"), 20);
 shock_victim = noone;
 emmi_shock_timer = 0;
 
+//uspecial variables
+head_rot = 0;
+stored_head = 0;
+temp_wall = 0;
+on_cooldown = 0;
+
 /*empty attack list
 AT_NSPECIAL_2
 AT_NSPECIAL_AIR

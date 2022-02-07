@@ -8,6 +8,8 @@ if(hit_player_obj.emmi_frozen == true){
     }
 }
 
+on_cooldown = 0;
+
 if(hit_player_obj.emmi_shocked == true){
     emmi_shocked = false;
 }
