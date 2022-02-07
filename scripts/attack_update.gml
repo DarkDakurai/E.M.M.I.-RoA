@@ -264,6 +264,8 @@ switch(attack){
 	fall_through = true;
 	can_fast_fall = false;
 	if(window == 2){
+		hsp = 0;
+		vsp = 0;
 		if(joy_dir >= -22.5 && joy_dir < 22.5){
 			head_rot = (spr_dir = 1? 0: 4);
 		}else if(joy_dir >= 22.5 && joy_dir < 67.5){
@@ -301,6 +303,10 @@ switch(attack){
 			window_timer = 0;
 			temp_wall = 0;
 		}
+	}
+	if(window > 4){
+		hsp = 0;
+		vsp = 0;
 	}
 	if(window > 4 && window < 9){
 		wall = temp_wall;
