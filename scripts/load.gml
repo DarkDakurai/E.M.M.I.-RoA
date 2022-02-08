@@ -77,7 +77,9 @@ sprite_change_offset("0_fspecial_air", 69, 138);
 sprite_change_offset("1_fspecial_air", 69, 138);
 
 sprite_change_offset("0_uspecial", 136, 186);
+sprite_change_offset("0_air_uspecial", 136, 186);
 sprite_change_offset("1_uspecial", 136, 186);
+sprite_change_offset("1_air_uspecial", 136, 186);
 sprite_change_offset("0_uspecial_head_0", 136, 186);
 sprite_change_offset("0_uspecial_head_1", 136, 186);
 sprite_change_offset("0_uspecial_head_2", 136, 186);

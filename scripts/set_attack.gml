@@ -515,6 +515,14 @@ switch(attack){
     case AT_DSPECIAL:
     set_attack_value(AT_DSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial"));
     break;
+    
+    case AT_USPECIAL:
+    if(free && window < 4){
+		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_air_uspecial"));
+	}else{
+		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_uspecial"));
+	}
+	break;
 }
 
 

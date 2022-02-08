@@ -260,6 +260,15 @@ switch(attack){
 	break;
 	
 	case AT_USPECIAL:
+	set_hitbox_value(AT_USPECIAL, 1, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_USPECIAL, 2, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_USPECIAL, 3, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_USPECIAL, 4, HG_DAMAGE, 8 + (anger_state * 2));
+	if(free && window < 4){
+		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_air_uspecial"));
+	}else{
+		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_uspecial"));
+	}
 	on_cooldown = 1;
 	fall_through = true;
 	can_fast_fall = false;

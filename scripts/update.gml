@@ -818,6 +818,10 @@ if(!free){
     on_cooldown = 0;
 }
 
+if(attack == AT_USPECIAL && window > 4 && (state == PS_ATTACK_AIR || state == PS_ATTACK_GROUND)){
+	wall = temp_wall;
+}
+
 //constant variables
 visible = true;
 has_walljump = false;
