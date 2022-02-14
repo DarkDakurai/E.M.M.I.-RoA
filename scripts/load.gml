@@ -11,12 +11,12 @@ sprite_change_offset("0_walk", 42, 35);
 sprite_change_offset("1_walk", 42, 35);
 sprite_change_offset("walkturn", 32, 62);
 
-sprite_change_offset("0_dash", 77, 67);
-sprite_change_offset("0_dash_start", 77, 67);
-sprite_change_offset("0_dash_stop", 77, 67);
-sprite_change_offset("1_dash", 77, 67);
-sprite_change_offset("1_dash_start", 77, 67);
-sprite_change_offset("1_dash_stop", 77, 67);
+sprite_change_offset("0_dash", 77, 68);
+sprite_change_offset("0_dash_start", 77, 68);
+sprite_change_offset("0_dash_stop", 77, 68);
+sprite_change_offset("1_dash", 77, 68);
+sprite_change_offset("1_dash_start", 77, 68);
+sprite_change_offset("1_dash_stop", 77, 68);
 sprite_change_offset("dashturn", 32, 62);
 
 sprite_change_offset("0_jumpsquat", 48, 98);
@@ -42,7 +42,8 @@ sprite_change_offset("tech", 32, 62);
 sprite_change_offset("0_jab", 84, 86);
 sprite_change_offset("1_jab", 84, 86);
 
-sprite_change_offset("dattack", 64, 94);
+sprite_change_offset("0_dattack", 80, 67);
+sprite_change_offset("1_dattack", 80, 67);
 
 sprite_change_offset("0_ftilt", 102, 80);
 sprite_change_offset("1_ftilt", 102, 80);

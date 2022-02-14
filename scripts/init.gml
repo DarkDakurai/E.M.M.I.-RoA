@@ -224,6 +224,10 @@ stored_head = 0;
 temp_wall = 0;
 on_cooldown = 0;
 
+//dattack variables
+stored_spark = false;
+spark_shader = -1;
+
 /*empty attack list
 AT_NSPECIAL_2
 AT_NSPECIAL_AIR

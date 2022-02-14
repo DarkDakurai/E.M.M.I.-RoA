@@ -260,10 +260,11 @@ switch(attack){
 	break;
 	
 	case AT_USPECIAL:
-	set_hitbox_value(AT_USPECIAL, 1, HG_DAMAGE, 6 + (anger_state * 2));
-	set_hitbox_value(AT_USPECIAL, 2, HG_DAMAGE, 8 + (anger_state * 2));
-	set_hitbox_value(AT_USPECIAL, 3, HG_DAMAGE, 8 + (anger_state * 2));
-	set_hitbox_value(AT_USPECIAL, 4, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_USPECIAL, 1, HG_DAMAGE, (6 + (anger_state * 2)) * (stored_spark = true? 2: 1));
+	set_hitbox_value(AT_USPECIAL, 2, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
+	set_hitbox_value(AT_USPECIAL, 3, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
+	set_hitbox_value(AT_USPECIAL, 4, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
+	set_window_value(AT_USPECIAL, 4, AG_WINDOW_LENGTH, (stored_spark = true? 22: 18));
 	if(free && window < 4){
 		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_air_uspecial"));
 	}else{
@@ -314,6 +315,7 @@ switch(attack){
 		}
 	}
 	if(window > 4){
+		stored_spark = false;
 		hsp = 0;
 		vsp = 0;
 	}
@@ -347,9 +349,29 @@ switch(attack){
 		set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 9);
 	}
 	break;
+	
+	case AT_DATTACK:
+	set_hitbox_value(AT_DATTACK, 1, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_DATTACK, 2, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_DATTACK, 3, HG_DAMAGE, 8 + (anger_state * 2));
+	if(attack_down && window == 2 && window_timer == 17){
+		window_timer = 0;
+		window = 2;
+	}else if(down_down || !attack_down || place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
+		if(down_down){
+			stored_spark = true;
+		}
+		if(!place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
+			state = PS_DASH_STOP;
+			state_timer = 0;
+		}else{
+			state = PS_IDLE;
+		}
+	}
 }
 
 //sprite changes
+set_attack_value(AT_DATTACK, AG_SPRITE, sprite_get(string(plate_state) + "_dattack"));
 set_attack_value(AT_NSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_nspecial"));
 set_attack_value(AT_DSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_dstrong"));
 set_attack_value(AT_FSTRONG, AG_SPRITE, sprite_get(string(plate_state) + "_fstrong"));

@@ -517,6 +517,7 @@ switch(attack){
     break;
     
     case AT_USPECIAL:
+    set_window_value(AT_USPECIAL, 4, AG_WINDOW_LENGTH, (stored_spark = true? 24: 18));
     if(free && window < 4){
 		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_air_uspecial"));
 	}else{

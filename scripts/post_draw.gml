@@ -5,3 +5,11 @@ if(attack == AT_USPECIAL && window == 2 && (state == PS_ATTACK_AIR || state == P
         draw_sprite_ext(sprite_get("1_uspecial_head_" + string(anger_state)), head_rot, (free? x + (spr_dir = 1? - 2: 0): x), (free? y + (spr_dir = 1? - 2: -2): y), 2 * spr_dir, 2, 0, c_white, 1);
     }
 }
+
+if(attack == AT_DATTACK && window_timer % 10 < 5 && state == PS_ATTACK_GROUND){
+    gpu_set_fog(true, c_white, 0, 1);
+    draw_sprite_ext(sprite_index, image_index, x + 2, y + 2, 2 * spr_dir, 2, spr_angle, c_white, 1);
+    gpu_set_fog(false, c_white, 0, 1);
+}else{
+    gpu_set_fog(false, c_white, 0, 1);
+}
