@@ -360,6 +360,7 @@ switch(attack){
 	}else if(down_down || !attack_down || place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
 		if(down_down){
 			stored_spark = true;
+			spark_timer = 300;
 		}
 		if(!place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
 			state = PS_DASH_STOP;

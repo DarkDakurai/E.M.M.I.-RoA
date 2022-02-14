@@ -822,6 +822,13 @@ if(attack == AT_USPECIAL && window > 4 && (state == PS_ATTACK_AIR || state == PS
 	wall = temp_wall;
 }
 
+//dattack
+if(spark_timer > 0){
+	spark_timer--;
+}else{
+	stored_spark = false;
+}
+
 //constant variables
 visible = true;
 has_walljump = false;

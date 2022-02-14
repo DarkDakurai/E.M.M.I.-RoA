@@ -227,6 +227,7 @@ on_cooldown = 0;
 //dattack variables
 stored_spark = false;
 spark_shader = -1;
+spark_timer = 300;
 
 /*empty attack list
 AT_NSPECIAL_2
