@@ -408,6 +408,12 @@ switch(wall){
     }else{
         vsp = 0;
     }
+    if(jump_pressed){
+    	spr_dir = 1;
+    	spr_angle = 0;
+    	draw_x = -64 * spr_dir;
+    	set_attack(AT_NTHROW);
+    }
     break;
     
     case 2:
@@ -533,6 +539,12 @@ switch(wall){
     }else{
         vsp = 0;
     }
+    if(jump_pressed){
+    	spr_dir = -1;
+    	spr_angle = 0;
+    	draw_x = -64 * spr_dir;
+    	set_attack(AT_NTHROW);
+    }
     break;
     
     case 3:
@@ -651,6 +663,12 @@ switch(wall){
         }
     }else{
         hsp = 0;
+    }
+    if(jump_pressed){
+    	spr_angle = 0;
+    	y += 201;
+    	spr_dir *= -1;
+    	set_attack(AT_DTHROW);
     }
     break;
 }
@@ -827,6 +845,11 @@ if(spark_timer > 0){
 	spark_timer--;
 }else{
 	stored_spark = false;
+}
+
+//walljumps
+if(!free){
+	max_djumps = 1;
 }
 
 //constant variables

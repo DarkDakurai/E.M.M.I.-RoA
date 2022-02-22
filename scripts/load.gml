@@ -119,3 +119,7 @@ sprite_change_offset("climb2_hurt", 170, 302);
 sprite_change_offset("0_climb3", 77, 61);
 sprite_change_offset("1_climb3", 77, 61);
 sprite_change_offset("climb3_hurt", 154, 122);
+sprite_change_offset("0_walljump", 96, 106);
+sprite_change_offset("1_walljump", 96, 106);
+sprite_change_offset("0_ceilingjump", 77, 97);
+sprite_change_offset("1_ceilingjump", 77, 97);

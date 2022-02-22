@@ -369,6 +369,35 @@ switch(attack){
 			state = PS_IDLE;
 		}
 	}
+	break;
+	
+	case AT_NTHROW:
+	wall = 0;
+	if(window_timer == 30){
+		max_djumps = 2;
+		y += 70;
+		spr_dir *= -1;
+	}else if(window_timer >= 24){
+		if(window_timer == 24){
+			vsp = -10;
+		}
+		hsp = -7 * spr_dir;
+	}else{
+		draw_x = 0;
+		hsp = 0;
+		vsp = 0;
+	}
+	break;
+	
+	case AT_DTHROW:
+	wall = 0;
+	if(window_timer == 15){
+		vsp = 10;
+	}else{
+		hsp = 0;
+		vsp = 0;
+	}
+	break;
 }
 
 //sprite changes
