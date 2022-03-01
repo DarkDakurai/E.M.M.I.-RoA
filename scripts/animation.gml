@@ -57,6 +57,18 @@ switch(wall){
         case PS_PRATFALL:
         sprite_index = sprite_get(string(plate_state) + "_pratfall");
         break;
+        case PS_LANDING_LAG:
+        sprite_index = sprite_get(string(plate_state) + "_land");
+        image_index = state_timer * 0.2;
+        break;
+        case PS_PRATLAND:
+        sprite_index = sprite_get(string(plate_state) + "_land");
+        image_index = state_timer * 0.2;
+        break;
+        case PS_WAVELAND:
+        sprite_index = sprite_get(string(plate_state) + "_crouch");
+        image_index = 4;
+        break;
     }
     break;
     
@@ -111,3 +123,27 @@ switch(wall){
     }
     break;
 }
+
+/*
+PS_WALK_TURN
+PS_DASH_TURN
+
+PS_AIR_DODGE
+PS_PARRY_START
+PS_PARRY
+PS_ROLL_BACKWARD
+PS_ROLL_FORWARD
+PS_TECH_GROUND
+PS_TECH_BACKWARD
+PS_TECH_FORWARD
+PS_WALL_TECH
+
+PS_WRAPPED
+PS_FROZEN
+
+PS_HITSTUN
+PS_HITSTUN_LAND
+PS_TUMBLE
+
+PS_SPAWN
+PS_RESPAWN

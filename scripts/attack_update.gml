@@ -398,6 +398,31 @@ switch(attack){
 		vsp = 0;
 	}
 	break;
+	
+	case AT_UTILT:
+	set_hitbox_value(AT_UTILT, 1, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 2, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 4, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 3, HG_DAMAGE, 3 + (anger_state * 2));
+	break;
+	
+	case AT_DTILT:
+	set_hitbox_value(AT_DTILT, 1, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_DTILT, 2, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_DTILT, 3, HG_DAMAGE, 3 + (anger_state * 2));
+	break;
+	
+	case AT_NAIR:
+	set_hitbox_value(AT_NAIR, 1, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_NAIR, 2, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_NAIR, 3, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_NAIR, 4, HG_DAMAGE, 4 + (anger_state * 2));
+	break;
+	
+	case AT_BAIR:
+	set_hitbox_value(AT_BAIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_BAIR, 2, HG_DAMAGE, 4 + (anger_state * 2));
+	break;
 }
 
 //sprite changes
@@ -411,5 +436,9 @@ set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspe
 set_attack_value(AT_FTILT, AG_SPRITE, sprite_get(string(plate_state) + "_ftilt"));
 set_attack_value(AT_FSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial_air"));
 set_attack_value(AT_DSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial_air"));
+set_attack_value(AT_UTILT, AG_SPRITE, sprite_get(string(plate_state) + "_utilt"));
+set_attack_value(AT_DTILT, AG_SPRITE, sprite_get(string(plate_state) + "_dtilt"));
+set_attack_value(AT_NAIR, AG_SPRITE, sprite_get(string(plate_state) + "_nair"));
+set_attack_value(AT_BAIR, AG_SPRITE, sprite_get(string(plate_state) + "_bair"));
 
 

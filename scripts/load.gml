@@ -48,11 +48,20 @@ sprite_change_offset("1_dattack", 80, 67);
 sprite_change_offset("0_ftilt", 102, 80);
 sprite_change_offset("1_ftilt", 102, 80);
 
-sprite_change_offset("dtilt", 64, 94);
-sprite_change_offset("utilt", 64, 94);
-sprite_change_offset("nair", 64, 94);
+sprite_change_offset("0_dtilt", 97, 131);
+sprite_change_offset("1_dtilt", 97, 131);
+
+sprite_change_offset("0_utilt", 97, 131);
+sprite_change_offset("1_utilt", 97, 131);
+
+sprite_change_offset("0_nair", 95, 132);
+sprite_change_offset("1_nair", 95, 132);
+
 sprite_change_offset("fair", 64, 94);
-sprite_change_offset("bair", 64, 94);
+
+sprite_change_offset("0_bair", 95, 132);
+sprite_change_offset("1_bair", 95, 132);
+
 sprite_change_offset("uair", 64, 94);
 sprite_change_offset("dair", 64, 94);
 
@@ -81,12 +90,8 @@ sprite_change_offset("0_uspecial", 136, 186);
 sprite_change_offset("0_air_uspecial", 136, 186);
 sprite_change_offset("1_uspecial", 136, 186);
 sprite_change_offset("1_air_uspecial", 136, 186);
-sprite_change_offset("0_uspecial_head_0", 136, 186);
-sprite_change_offset("0_uspecial_head_1", 136, 186);
-sprite_change_offset("0_uspecial_head_2", 136, 186);
-sprite_change_offset("1_uspecial_head_0", 136, 186);
-sprite_change_offset("1_uspecial_head_1", 136, 186);
-sprite_change_offset("1_uspecial_head_2", 136, 186);
+sprite_change_offset("0_uspecial_head", 136, 186);
+sprite_change_offset("1_uspecial_head", 136, 186);
 
 sprite_change_offset("0_dspecial", 81, 98);
 sprite_change_offset("1_dspecial", 81, 98);
