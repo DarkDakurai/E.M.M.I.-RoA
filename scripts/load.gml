@@ -57,13 +57,16 @@ sprite_change_offset("1_utilt", 97, 131);
 sprite_change_offset("0_nair", 95, 132);
 sprite_change_offset("1_nair", 95, 132);
 
-sprite_change_offset("fair", 64, 94);
+sprite_change_offset("0_fair", 95, 132);
+sprite_change_offset("1_fair", 95, 132);
 
 sprite_change_offset("0_bair", 95, 132);
 sprite_change_offset("1_bair", 95, 132);
 
 sprite_change_offset("uair", 64, 94);
-sprite_change_offset("dair", 64, 94);
+
+sprite_change_offset("0_dair", 95, 132);
+sprite_change_offset("1_dair", 95, 132);
 
 sprite_change_offset("0_fstrong", 84, 86);
 sprite_change_offset("1_fstrong", 84, 86);
