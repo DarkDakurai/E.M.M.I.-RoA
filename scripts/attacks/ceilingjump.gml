@@ -1,4 +1,4 @@
-set_attack_value(AT_DTHROW, AG_SPRITE, sprite_get("0_ceilingjump"));
+set_attack_value(AT_DTHROW, AG_SPRITE, sprite_get(string(plate_state) + "_ceilingjump"));
 set_attack_value(AT_DTHROW, AG_HURTBOX_SPRITE, sprite_get("ceilingjump_hurt"));
 set_attack_value(AT_DTHROW, AG_NUM_WINDOWS, 1);
 set_attack_value(AT_DTHROW, AG_CATEGORY, 2);
