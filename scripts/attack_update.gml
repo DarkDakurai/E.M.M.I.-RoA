@@ -45,8 +45,6 @@ switch(attack){
 	break;
 	case AT_NSPECIAL_AIR:
 	set_hitbox_value(AT_NSPECIAL_AIR, 1, HG_DAMAGE, 4 + (2 * anger_state));
-    set_attack_value(AT_NSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
-    set_attack_value(AT_NSPECIAL_AIR, AG_AIR_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
 	grab_x = x + (40 * spr_dir);
     grab_y = y;
 	
@@ -124,14 +122,14 @@ switch(attack){
 	set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
 	case AT_FSPECIAL_AIR:
-	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 8 + (plate_state * 2));
+	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 8 + (anger_state * 2));
 	if(!free){
 		state = PS_LAND;
 		state_timer = 0;
 	}
 	break;
 	case AT_DSPECIAL_AIR:
-	set_hitbox_value(AT_DSPECIAL_AIR, 1, HG_DAMAGE, 6 + (plate_state * 2));
+	set_hitbox_value(AT_DSPECIAL_AIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
 	if(!free){
 		state = PS_LAND;
 		state_timer = 0;
@@ -423,6 +421,41 @@ switch(attack){
 	set_hitbox_value(AT_BAIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_BAIR, 2, HG_DAMAGE, 4 + (anger_state * 2));
 	break;
+	
+	case AT_DAIR:
+	set_hitbox_value(AT_DAIR, 1, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_DAIR, 2, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_DAIR, 3, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_DAIR, 4, HG_DAMAGE, 6 + (anger_state * 2));
+	break;
+	
+	case AT_FAIR:
+	set_hitbox_value(AT_FAIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 2, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 5, HG_DAMAGE, 10 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 3, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 4, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 6, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 7, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 8, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 9, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 10, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 11, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 12, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 13, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 14, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 15, HG_DAMAGE, 1 + (anger_state * 2));
+	break;
+	
+	case AT_UAIR:
+	set_hitbox_value(AT_UAIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_UAIR, 2, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_UAIR, 3, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_UAIR, 4, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_UAIR, 5, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_UAIR, 6, HG_DAMAGE, 4 + (anger_state * 2));
+	break;
+	
 }
 
 //sprite changes
@@ -436,9 +469,17 @@ set_attack_value(AT_FSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_fspe
 set_attack_value(AT_FTILT, AG_SPRITE, sprite_get(string(plate_state) + "_ftilt"));
 set_attack_value(AT_FSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_fspecial_air"));
 set_attack_value(AT_DSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial_air"));
+set_attack_value(AT_DSPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_dspecial"));
 set_attack_value(AT_UTILT, AG_SPRITE, sprite_get(string(plate_state) + "_utilt"));
 set_attack_value(AT_DTILT, AG_SPRITE, sprite_get(string(plate_state) + "_dtilt"));
 set_attack_value(AT_NAIR, AG_SPRITE, sprite_get(string(plate_state) + "_nair"));
 set_attack_value(AT_BAIR, AG_SPRITE, sprite_get(string(plate_state) + "_bair"));
-
+set_attack_value(AT_DAIR, AG_SPRITE, sprite_get(string(plate_state) + "_dair"));
+set_attack_value(AT_FAIR, AG_SPRITE, sprite_get(string(plate_state) + "_fair"));
+set_attack_value(AT_UAIR, AG_SPRITE, sprite_get(string(plate_state) + "_uair"));
+set_attack_value(AT_DTHROW, AG_SPRITE, sprite_get(string(plate_state) + "_ceilingjump"));
+set_attack_value(AT_NSPECIAL_AIR, AG_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
+set_attack_value(AT_NSPECIAL_AIR, AG_AIR_SPRITE, sprite_get(string(plate_state) + "_nspecial_air"));
+set_attack_value(AT_JAB, AG_SPRITE, sprite_get(string(plate_state) + "_jab"));
+set_attack_value(AT_NTHROW, AG_SPRITE, sprite_get(string(plate_state) + "_walljump"));
 

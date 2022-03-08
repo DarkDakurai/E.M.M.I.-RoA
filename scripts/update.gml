@@ -17,6 +17,29 @@ switch(anger_state){
     break;
 }
 
+//hurtbox wall change
+hurtboxID.image_angle = spr_angle;
+if(state == PS_ATTACK_GROUND || state == PS_ATTACK_AIR) && (wall == 1 || wall == 2){
+	sprite_change_offset("jab_hurt", 168, 154);
+	sprite_change_offset("ftilt_hurt", 204, 142);
+	sprite_change_offset("dtilt_hurt", 194, 244);
+	sprite_change_offset("utilt_hurt", 194, 262 - 18);
+	sprite_change_offset("fstrong_hurt", 168, 172 - 18);
+	sprite_change_offset("ustrong_hurt", 246, 220 - 18);
+	sprite_change_offset("dstrong_hurt", 256, 322 - 18);
+}else{
+	sprite_change_offset("jab_hurt", 168, 172);
+	sprite_change_offset("ftilt_hurt", 204, 160);
+	sprite_change_offset("dtilt_hurt", 194, 262);
+	sprite_change_offset("utilt_hurt", 194, 262);
+	sprite_change_offset("nair_hurt", 190, 264);
+	sprite_change_offset("fair_hurt", 190, 264);
+	sprite_change_offset("bair_hurt", 190, 264);
+	sprite_change_offset("fstrong_hurt", 168, 172);
+	sprite_change_offset("ustrong_hurt", 246, 220);
+	sprite_change_offset("dstrong_hurt", 256, 322);
+}
+
 //changes the wall variable at the end of the climbing
 if(attack == AT_EXTRA_1 && climb_timer == get_window_value(AT_EXTRA_1, 1, AG_WINDOW_LENGTH) - 1 && climbing == true){
     spr_dir = prevprev_dir;
@@ -740,12 +763,12 @@ if(state == PS_JUMPSQUAT){
 }
 
 //anger value stuff
-if(up_down && anger_value < 1000){ //debug
+/*if(up_down && anger_value < 1000){ //debug
     anger_value++
     anger_value++
     anger_value++
     anger_value++
-}else if(anger_value > 0){
+}else */if(anger_value > 0){
     anger_value--
 }
 
@@ -859,3 +882,6 @@ if(wall != 0){
     djumps = 1;
 }
 prev_dir = spr_dir;
+
+hsp = 0;
+vsp = 0;
