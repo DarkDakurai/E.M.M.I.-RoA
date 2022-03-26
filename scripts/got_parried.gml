@@ -1,1 +1,4 @@
-// got_parried is a script that is called when you get parried.
+if(!free){
+set_attack_value(AT_UTHROW, AG_SPRITE, sprite_get(string(plate_state) + "_got_parried"));
+set_attack(AT_UTHROW);
+}

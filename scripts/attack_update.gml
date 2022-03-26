@@ -17,15 +17,38 @@ switch(attack){
 		window = 3;
 		window_timer = 0;
 	}
-	
+	if (window == 3 && window_timer == 2){
+		sound_play(sound_get("needle_1"));
+	}
 	if(attack_pressed || special_pressed) && window == 6 && timing == false{
 		timing = true;
-		set_hitbox_value(AT_NSPECIAL, 2, HG_DAMAGE, 50 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL, 2, HG_DAMAGE, 40 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL, 2, HG_BASE_HITPAUSE, 15);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_VISUAL_EFFECT, 306);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_absa_kickhit"));
 	}else if((attack_pressed || special_pressed) && window > 3 && window < 6 && timing == false){
 		timing = true;
 		set_hitbox_value(AT_NSPECIAL, 2, HG_DAMAGE, 15 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL, 2, HG_BASE_HITPAUSE, 10);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_VISUAL_EFFECT, 304);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_blow_heavy1"));
 	}else if(timing == false){
 		set_hitbox_value(AT_NSPECIAL, 2, HG_DAMAGE, 15 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL, 2, HG_BASE_HITPAUSE, 10);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_VISUAL_EFFECT, 304);
+		set_hitbox_value(AT_NSPECIAL, 2, HG_HIT_SFX, asset_get("sfx_blow_heavy1"));
+	}
+	
+	if(hit_player_obj.shield_pressed && window == 6 && opp_timing == false){
+		opp_timing = true;
+		opp_timed = true;
+		set_hitbox_value(AT_NSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 1);
+	}else if(hit_player_obj.shield_pressed && window > 3 && window < 6 && opp_timing == false){
+		opp_timing = true;
+		opp_timed = false;
+		set_hitbox_value(AT_NSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 0);
+	}else if(opp_timing == false){
+		set_hitbox_value(AT_NSPECIAL, 2, HG_WINDOW_CREATION_FRAME, 0);
 	}
 	
 	if(instance_exists(victim) && window < 7 && window >= 3){
@@ -40,6 +63,14 @@ switch(attack){
     }
     
     if(window == 7){
+    	if(opp_timed){
+    		hit_player_obj.hitstop = 0;
+    		hit_player_obj.hitpause = 0;
+    		hit_player_obj.y += 10;
+    		hit_player_obj.free = false;
+    		hit_player_obj.state = PS_PARRY;
+    		hit_player_obj.state_timer = 0;
+    	}
     	hit_player_obj.grabbed = false;
     }
 	break;
@@ -53,6 +84,16 @@ switch(attack){
 		window_timer = 0;
 	}
 	
+	if(window >= 4){
+		sprite_change_offset("0_nspecial_air", 77, 160);
+		sprite_change_offset("1_nspecial_air", 77, 160);
+		sprite_change_offset("nspecial_air_hurt", 154, 320);
+	}else{
+		sprite_change_offset("0_nspecial_air", 77, 160 - 26);
+		sprite_change_offset("1_nspecial_air", 77, 160 - 26);
+		sprite_change_offset("nspecial_air_hurt", 154, 320 - 52);
+	}
+	
 	if(hit == true){
         set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_GOTO, 2);
         set_attack_value(AT_NSPECIAL_AIR, AG_NUM_WINDOWS, 8);
@@ -60,15 +101,29 @@ switch(attack){
         set_window_value(AT_NSPECIAL_AIR, 1, AG_WINDOW_GOTO, 9);
         set_attack_value(AT_NSPECIAL_AIR, AG_NUM_WINDOWS, 9);
     }
-	
+    if (window == 1 && window_timer == 22){
+		sound_play(sound_get("needle_1"));
+	}
+	if (window == 7 && window_timer == 1){
+		sound_play(sound_get("needle_2"));
+	}
 	if(attack_pressed || special_pressed) && window == 7 && timing == false && window_timer >= 3{
 		timing = true;
-		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 50 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 40 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_BASE_HITPAUSE, 15);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_VISUAL_EFFECT, 306);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_HIT_SFX, asset_get("sfx_absa_kickhit"));
 	}else if((attack_pressed || special_pressed) && window > 3 && window < 6 && timing == false){
 		timing = true;
-		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 15 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 12 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_BASE_HITPAUSE, 10);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_VISUAL_EFFECT, 304);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_HIT_SFX, asset_get("sfx_blow_heavy1"));
 	}else if(timing == false){
-		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 15 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_DAMAGE, 12 + (2 * anger_state));
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_BASE_HITPAUSE, 10);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_VISUAL_EFFECT, 304);
+		set_hitbox_value(AT_NSPECIAL_AIR, 2, HG_HIT_SFX, asset_get("sfx_blow_heavy1"));
 	}
 	
 	if(instance_exists(victim) && window <= 7){
@@ -77,7 +132,7 @@ switch(attack){
         hit_player_obj.hitpause = true;
         //force move to your grab position
         victim.x = lerp(victim.x, grab_x, 0.4)
-        victim.y = lerp(victim.y, grab_y, 1.1)
+        victim.y = lerp(victim.y, grab_y + (free? 52: 0), 1.1)
     }else{
     	hit_player_obj.hitstop = 0;
         victim = noone;
@@ -95,14 +150,19 @@ switch(attack){
 	break;
 	case AT_FSTRONG:
 	if(window == 1){
-		move_cooldown[AT_FSTRONG] = 30;
+		move_cooldown[AT_FSTRONG] = 40;
 	}
-	set_hitbox_value(AT_FSTRONG, 1, HG_DAMAGE, 10 + (anger_state * 2));
-	set_hitbox_value(AT_FSTRONG, 2, HG_DAMAGE, 12 + (anger_state * 2));
-	set_hitbox_value(AT_FSTRONG, 3, HG_DAMAGE, 14 + (anger_state * 2));
+	set_hitbox_value(AT_FSTRONG, 1, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_FSTRONG, 2, HG_DAMAGE, 10 + (anger_state * 2));
+	set_hitbox_value(AT_FSTRONG, 3, HG_DAMAGE, 12 + (anger_state * 2));
 	break;
 	case AT_USTRONG:
-	if(window == 3 && window_timer == 10 && wall == 0){
+	if(ustrong_whiff == true){
+		set_attack_value(AT_USTRONG, AG_NUM_WINDOWS, 4);
+	}else{
+		set_attack_value(AT_USTRONG, AG_NUM_WINDOWS, 3);
+	}
+	if(window == 3 && window_timer == 15 && wall == 0){
 		spr_dir = (spr_dir = 1? -1: 1);
 		x += 4 * spr_dir;
 	}
@@ -115,14 +175,17 @@ switch(attack){
 	break;
 	case AT_FSPECIAL:
 	if(window == 3 && window_timer == 9){
-		move_cooldown[AT_FSPECIAL] = 90;
+		move_cooldown[AT_FSPECIAL] = 120;
 	}
 	set_hitbox_value(AT_FSPECIAL, 1, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FSPECIAL, 2, HG_DAMAGE, 6 + (anger_state * 2));
 	set_hitbox_value(AT_FSPECIAL, 3, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
 	case AT_FSPECIAL_AIR:
-	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 8 + (anger_state * 2));
+	set_hitbox_value(AT_FSPECIAL_AIR, 1, HG_DAMAGE, 4 + (plate_state * 2));
+	set_hitbox_value(AT_FSPECIAL_AIR, 2, HG_DAMAGE, 6 + (plate_state * 2));
+	set_hitbox_value(AT_FSPECIAL_AIR, 3, HG_DAMAGE, 6 + (plate_state * 2));
+	set_hitbox_value(AT_FSPECIAL_AIR, 4, HG_DAMAGE, 6 + (plate_state * 2));
 	if(!free){
 		state = PS_LAND;
 		state_timer = 0;
@@ -214,6 +277,10 @@ switch(attack){
 	break;
 	case AT_JAB:
 	
+	if(special_pressed && wall = 0 && window >= 2){
+		set_attack(AT_NSPECIAL);
+	}
+	
 	//makes the spinny spinny
 	if(attack_down && window == 5){
 		set_window_value(AT_JAB, 5, AG_WINDOW_TYPE, 9);
@@ -222,8 +289,8 @@ switch(attack){
 	}
 	
 	//better cancel
-	if(attack_pressed || attack_down){
-		if(window == 1 && window_timer >= 15){
+	if(attack_pressed || attack_down) && joy_pad_idle{
+		if(window == 1 && window_timer >= 7){
 			set_window_value(AT_JAB, 2, AG_WINDOW_CANCEL_TYPE, 0);
 		}else{
 			set_window_value(AT_JAB, 2, AG_WINDOW_CANCEL_TYPE, 1);
@@ -243,6 +310,9 @@ switch(attack){
 	break;
 	
 	case AT_FTILT:
+	if(special_pressed && wall = 0 && window >= 2){
+		set_attack(AT_NSPECIAL);
+	}
 	if(window == 2 && ftilt_cancel == 0 && attack_pressed){
 		ftilt_cancel = 1;
 	}
@@ -262,7 +332,7 @@ switch(attack){
 	set_hitbox_value(AT_USPECIAL, 2, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
 	set_hitbox_value(AT_USPECIAL, 3, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
 	set_hitbox_value(AT_USPECIAL, 4, HG_DAMAGE, (8 + (anger_state * 2)) * (stored_spark = true? 2: 1));
-	set_window_value(AT_USPECIAL, 4, AG_WINDOW_LENGTH, (stored_spark = true? 22: 18));
+	set_window_value(AT_USPECIAL, 4, AG_WINDOW_LENGTH, (stored_spark = true? 15: 12));
 	if(free && window < 4){
 		set_attack_value(AT_USPECIAL, AG_SPRITE, sprite_get(string(plate_state) + "_air_uspecial"));
 	}else{
@@ -291,6 +361,11 @@ switch(attack){
 		}else if(joy_dir >= 292.5 && joy_dir < 337.5){
 			head_rot = (spr_dir = 1? 7: 5);
 		}
+		if(right_down){
+			spr_dir = 1;
+		}else if(left_down){
+			spr_dir = -1;
+		}
 		stored_head = head_rot;
 	}
 	if(window == 4){
@@ -298,19 +373,26 @@ switch(attack){
 			window = 7;
 			window_timer = 0;
 			temp_wall = 1;
+			wall = temp_wall;
 		}else if(collision_point(x, y - 33, asset_get("solid_32_obj"), false, true) && (head_rot == 1 || head_rot == 2 || head_rot == 3)){
 			window = 8;
 			window_timer = 0;
 			temp_wall = 3;
+			wall = temp_wall;
 		}else if(collision_point(x - 21, y, asset_get("solid_32_obj"), false, true) && (spr_dir = 1? (head_rot == 3 || head_rot == 4 || head_rot == 5): (head_rot == 1 || head_rot == 0 || head_rot == 7))){
 			window = 7;
 			window_timer = 0;
 			temp_wall = 2;
+			wall = temp_wall;
 		}else if(collision_point(x, y + 33, asset_get("solid_32_obj"), false, true) && (head_rot == 5 || head_rot == 6 || head_rot == 7)){
 			window = 8;
 			window_timer = 0;
 			temp_wall = 0;
+			wall = temp_wall;
 		}
+	}
+	if(window == 3 && window_timer == 2){
+		sound_play(asset_get("sfx_abyss_explosion"));
 	}
 	if(window > 4){
 		stored_spark = false;
@@ -318,7 +400,6 @@ switch(attack){
 		vsp = 0;
 	}
 	if(window > 4 && window < 9){
-		wall = temp_wall;
 		if(window_timer == 1){
 			switch(temp_wall){
 			case 0:
@@ -343,29 +424,73 @@ switch(attack){
 			break;
 			}
 		}
+	}else if(window == 9 && window_timer == 1){
+		wall = temp_wall
+		switch(head_rot){
+			case 0:
+			x += 106 * spr_dir
+			y += 134;
+			break;
+			case 1:
+			x += 86 * spr_dir
+			y += 46;
+			break;
+			case 3:
+			x += 86 * spr_dir
+			y += 46;
+			break;
+			case 4:
+			x += 106 * spr_dir
+			y += 134;
+			break;
+			case 5:
+			y += 216;
+			break;
+			case 6:
+			x -= 28 * spr_dir
+			y += 238;
+			break;
+			case 7:
+			y += 216;
+			break;
+		}
+	}else if(window == 9 && window_timer == 15){
+		y -= 40;
 	}else{
 		set_attack_value(AT_USPECIAL, AG_NUM_WINDOWS, 9);
 	}
 	break;
 	
 	case AT_DATTACK:
+	if(special_pressed && wall = 0 && window >= 2){
+		set_attack(AT_NSPECIAL);
+	}
 	set_hitbox_value(AT_DATTACK, 1, HG_DAMAGE, 8 + (anger_state * 2));
 	set_hitbox_value(AT_DATTACK, 2, HG_DAMAGE, 8 + (anger_state * 2));
 	set_hitbox_value(AT_DATTACK, 3, HG_DAMAGE, 8 + (anger_state * 2));
 	if(attack_down && window == 2 && window_timer == 17){
 		window_timer = 0;
 		window = 2;
-	}else if(down_down || !attack_down || place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
+	}else if(down_down || !attack_down || place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))) && window == 2{
 		if(down_down){
 			stored_spark = true;
 			spark_timer = 300;
 		}
 		if(!place_meeting(x + (2 * spr_dir), y, asset_get("solid_32_obj"))){
-			state = PS_DASH_STOP;
-			state_timer = 0;
+			sound_stop(asset_get("sfx_absa_jabloop"));
+			window = 3;
+			window_timer = 0;
 		}else{
 			state = PS_IDLE;
 		}
+	}
+	if(window == 1 && window_timer == 1){
+		sound_play(asset_get("sfx_absa_jabloop"));
+	}else if(window == 3){
+		sound_stop(asset_get("sfx_absa_jabloop"));
+	}
+	if(window == 3 && window_timer == 9){
+		x += 10 * spr_dir;
 	}
 	break;
 	
@@ -373,13 +498,13 @@ switch(attack){
 	wall = 0;
 	if(window_timer == 30){
 		max_djumps = 2;
-		y += 70;
+		y += 44;
 		spr_dir *= -1;
 	}else if(window_timer >= 24){
 		if(window_timer == 24){
-			vsp = -10;
+			vsp = -7;
 		}
-		hsp = -7 * spr_dir;
+		hsp = -5 * spr_dir;
 	}else{
 		draw_x = 0;
 		hsp = 0;
@@ -388,6 +513,9 @@ switch(attack){
 	break;
 	
 	case AT_DTHROW:
+	if(window_timer == 1){
+		y -= 62;
+	}
 	wall = 0;
 	if(window_timer == 15){
 		vsp = 10;
@@ -398,19 +526,29 @@ switch(attack){
 	break;
 	
 	case AT_UTILT:
+	if(special_pressed && wall = 0 && window >= 2){
+		set_attack(AT_NSPECIAL);
+	}
 	set_hitbox_value(AT_UTILT, 1, HG_DAMAGE, 3 + (anger_state * 2));
-	set_hitbox_value(AT_UTILT, 2, HG_DAMAGE, 3 + (anger_state * 2));
-	set_hitbox_value(AT_UTILT, 4, HG_DAMAGE, 3 + (anger_state * 2));
-	set_hitbox_value(AT_UTILT, 3, HG_DAMAGE, 3 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 2, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 3, HG_DAMAGE, 6 + (anger_state * 2));
+	set_hitbox_value(AT_UTILT, 4, HG_DAMAGE, 6 + (anger_state * 2));
 	break;
 	
 	case AT_DTILT:
+	if(special_pressed && wall = 0 && window >= 2){
+		set_attack(AT_NSPECIAL);
+	}
 	set_hitbox_value(AT_DTILT, 1, HG_DAMAGE, 3 + (anger_state * 2));
 	set_hitbox_value(AT_DTILT, 2, HG_DAMAGE, 3 + (anger_state * 2));
 	set_hitbox_value(AT_DTILT, 3, HG_DAMAGE, 3 + (anger_state * 2));
 	break;
 	
 	case AT_NAIR:
+		if window == 2 && window_timer == 19
+        {
+            sound_play(asset_get("sfx_clairen_dspecial_counter_success"),false,noone,.8);
+        } 
 	set_hitbox_value(AT_NAIR, 1, HG_DAMAGE, 2 + (anger_state * 2));
 	set_hitbox_value(AT_NAIR, 2, HG_DAMAGE, 2 + (anger_state * 2));
 	set_hitbox_value(AT_NAIR, 3, HG_DAMAGE, 2 + (anger_state * 2));
@@ -430,21 +568,14 @@ switch(attack){
 	break;
 	
 	case AT_FAIR:
-	set_hitbox_value(AT_FAIR, 1, HG_DAMAGE, 6 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 2, HG_DAMAGE, 6 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 5, HG_DAMAGE, 10 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 3, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 1, HG_DAMAGE, 4 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 2, HG_DAMAGE, 10 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 5, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 3, HG_DAMAGE, 1 + (anger_state * 2));
 	set_hitbox_value(AT_FAIR, 4, HG_DAMAGE, 1 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 6, HG_DAMAGE, 2 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 6, HG_DAMAGE, 1 + (anger_state * 2));
 	set_hitbox_value(AT_FAIR, 7, HG_DAMAGE, 1 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 8, HG_DAMAGE, 2 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 9, HG_DAMAGE, 1 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 10, HG_DAMAGE, 2 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 11, HG_DAMAGE, 1 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 12, HG_DAMAGE, 2 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 13, HG_DAMAGE, 1 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 14, HG_DAMAGE, 2 + (anger_state * 2));
-	set_hitbox_value(AT_FAIR, 15, HG_DAMAGE, 1 + (anger_state * 2));
+	set_hitbox_value(AT_FAIR, 8, HG_DAMAGE, 1 + (anger_state * 2));
 	break;
 	
 	case AT_UAIR:

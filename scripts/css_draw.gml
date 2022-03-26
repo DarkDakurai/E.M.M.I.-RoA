@@ -7,9 +7,16 @@ if "prev_alt" not in self {
        prev_alt = 0;  
 }
 
+if "sound_played" not in self {
+       sound_played = 0;  
+}
 
 // Intro Sound
-//sound_play(sound_get("oh"));
+if(sound_played == 0){
+    sound_play(sound_get("beep"), false, false, 100);
+    sound_played = 1;
+}
+
 
 //alt names
 alt_name[0] = "E.M.M.I.-02SM";

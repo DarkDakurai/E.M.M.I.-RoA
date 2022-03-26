@@ -11,16 +11,16 @@
 
 // Physical size
 char_height         = 100;       //                  not zetterburn's. this is just cosmetic anyway
-knockback_adj       = 1;		// 0.9  -  1.2
+knockback_adj       = 0.7;		// 0.9  -  1.2
 
 // Ground movement
 walk_speed          = 3.25;		// 3    -  4.5
 walk_accel          = 0.2;		// 0.2  -  0.5
-walk_turn_time      = 6;		// 6
+walk_turn_time      = 30;		// 6
 initial_dash_time   = 12;		// 8    -  16       zetterburn's is 14
 initial_dash_speed  = 6;		// 4    -  9
 dash_speed          = 6.5;		// 5    -  9
-dash_turn_time      = 10;		// 8    -  20
+dash_turn_time      = 30;		// 8    -  20
 dash_turn_accel     = 1.5;		// 0.1  -  2
 dash_stop_time      = 12;		// 4    -  6        zetterburn's is 4
 dash_stop_percent   = 0.35;		// 0.25 -  0.5
@@ -28,7 +28,7 @@ ground_friction     = 6;		// 0.3  -  1
 moonwalk_accel      = 1.3;		// 1.2  -  1.4
     
 // Air movement
-leave_ground_max    = 6;		// 4    -  8
+leave_ground_max    = 5;		// 4    -  8
 max_jump_hsp        = 6;		// 4    -  8
 air_max_speed       = 4;  		// 3    -  7
 jump_change         = 5;		// 3
@@ -43,14 +43,14 @@ hitstun_grav        = 0.5;		// 0.45 -  0.53
 // Jumps
 jump_start_time     = 7;		// 5                this stat is automatically decreased by 1 after init.gml (dan moment), so its "real value" is 4. if you change this during a match, 4 is the value you should reset it to
 jump_speed          = 12;		// 7.6  -  12       okay, zetter's is actually 10.99 but... come on
-short_hop_speed     = 12;		// 4    -  7.4
+short_hop_speed     = 8;		// 4    -  7.4
 djump_speed         = 12;		// 6    -  12       absa's is -1 because of her floaty djump
 djump_accel         = 0;		// -1.4 -  0        absa's is -1.4, all other chars are 0. only works if the   djump_accel_end_time   variable is also set. floaty djumps should be adjusted by feel based on your char's gravity
 djump_accel_end_time= 0;		//                  the amount of time that   djump_accel   is applied for
 max_djumps          = 1;		// 0    -  3        the 0 is elliana because she has hover instead
 walljump_hsp        = 7;		// 4    -  7
 walljump_vsp        = 8;		// 7    -  10
-land_time           = 20;		// 4    -  6
+land_time           = 6;		// 4    -  6
 prat_land_time      = 10;		// 3    -  24       zetterburn's is 3, but that's ONLY because his uspecial is so slow. safer up b (or other move) = longer pratland time to compensate
 
 // Shield-button actions
@@ -61,32 +61,6 @@ wave_land_time      = 8;		// 6    -  12
 wave_land_adj       = 1.3;		// 1.2  -  1.5      idk what zetterburn's is
 air_dodge_speed     = 7.5;		// 7.5  -  8
 techroll_speed      = 10;		// 8    -  11
-
-
-
-// Character-specific assets init
-
-//Sprites
-spr_nspecial_proj = sprite_get("nspecial_proj");
-spr_example = sprite_get("example"); // sprites/example_stripX.png
-
-// SFX
-sfx_dbfz_kame_charge = sound_get("ARC_BTL_GKN_Kamehame_Chrg");
-sfx_dbfz_kame_fire = sound_get("ARC_BTL_GKN_Kamehame_Fire");
-sfx_dbfz_hit_weak = sound_get("ARC_BTL_CMN_Hit_Small-A");
-sfx_dbfz_hit_broken = sound_get("ARC_BTL_CMN_Hit_XLarge");
-sfx_dbfz_hit_jab3 = sound_get("ARC_BTL_GKN_Atk5A_3rd_Hit");
-
-// VFX
-vfx_ftilt_destroy = hit_fx_create(sprite_get("vfx_ftilt_destroy"), 12); // actually for nspecial, not ftilt
-vfx_nspecial_fire = hit_fx_create(sprite_get("vfx_nspecial_fire"), 16);
-
-// Variables
-has_goku_beam = true;
-doing_goku_beam = false;
-beam_newest_hbox = noone;
-
-
 
 // Animation Info
 
@@ -179,6 +153,7 @@ wall = 0; //0 = ground, 1 = right wall, 2 = left wall, 3 = ceiling
 special_anim_timer = 0;
 climbing = false;
 climb_timer = 0;
+wall_gauge = 1000;
 
 anger_state = 0; //0 = blue light, 1 = yellow light, 2 = red light
 anger_value = 0; //max 100
@@ -191,6 +166,15 @@ crawling = false;
 
 //sound variables
 sound_effect = get_color_profile_slot_r(27, 0);
+radar_sound = 0;
+beep_sound = 0;
+
+radar_turret = ["tur_I_see_you", "tur_target_aquired", "tur_hi"];
+beep_turret = ["tur_come_closer", "tur_would_you_come_over_here", "tur_hello_friend", "tur_helloo"];
+beep_turret_timer = 60;
+hurt_turret = ["tur_something's_wrong", "tur_oooww", "tur_oow", "tur_ow"];
+hit_turret = 0;
+dead_turret = ["tur_I'm_afraid_of_heights", "tur_noooo", "tur_weeeee", "tur_failure", "tur_critical_error"];
 
 //nspecial variables
 random_timing = 0; //0-3
@@ -200,11 +184,15 @@ victim = 0;
 grab_x = 0;
 grab_y = 0;
 hit = false;
+fog_alpha = 0;
+opp_timing = 0;
+opp_timed = 0;
 
 //fspecial variables
 ice_victim = noone;
 ice_size = false;
 ice_1 = 0;
+move_cooldown[AT_FSPECIAL] = 60;
 
 //ftilt variables
 ftilt_cancel = 0;
@@ -228,6 +216,23 @@ on_cooldown = 0;
 stored_spark = false;
 spark_shader = -1;
 spark_timer = 300;
+
+//ustrong
+ustrong_whiff = true;
+
+//radar variables
+radar_img = 9;
+radar_x = 46;
+radar_y = -72;
+radar_angle = 0;
+radar_state = 0; //0-inactive, 1-active
+radar_hbox_x = 0;
+radar_hbox_y = 0;
+radar_hit = hit_fx_create(sprite_get("empty"), 1);
+set_hit_particle_sprite(2, sprite_get("empty"));
+
+//turn
+turned = 0;
 
 /*empty attack list
 AT_NSPECIAL_2

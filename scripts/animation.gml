@@ -41,7 +41,7 @@ switch(wall){
         }
         break;
         case PS_DOUBLE_JUMP:
-        sprite_index = sprite_get(string(plate_state) + "_jump");
+        sprite_index = sprite_get(string(plate_state) + "_djump");
         image_index = state_timer * 0.16;
         if(image_index == 3){
             set_state(PS_IDLE_AIR)
@@ -52,7 +52,7 @@ switch(wall){
         break;
         case PS_LAND:
         sprite_index = sprite_get(string(plate_state) + "_land");
-        image_index = state_timer * 0.2;
+        image_index = state_timer / 3;
         break;
         case PS_PRATFALL:
         sprite_index = sprite_get(string(plate_state) + "_pratfall");
@@ -63,11 +63,19 @@ switch(wall){
         break;
         case PS_PRATLAND:
         sprite_index = sprite_get(string(plate_state) + "_land");
-        image_index = state_timer * 0.2;
+        image_index = 2;
         break;
         case PS_WAVELAND:
         sprite_index = sprite_get(string(plate_state) + "_crouch");
         image_index = 4;
+        break;
+        case PS_WALK_TURN:
+        sprite_index = (sprite_get(string(plate_state) + "_turn"));
+        image_index = state_timer / 3;
+        break;
+        case PS_DASH_TURN:
+        sprite_index = (sprite_get(string(plate_state) + "_turn"));
+        image_index = state_timer / 3;
         break;
     }
     break;
@@ -125,9 +133,6 @@ switch(wall){
 }
 
 /*
-PS_WALK_TURN
-PS_DASH_TURN
-
 PS_AIR_DODGE
 PS_PARRY_START
 PS_PARRY

@@ -1,3 +1,7 @@
+if(state == PS_SPAWN && state_timer == 0){
+	sound_stop(sound_get("beep"));
+}
+
 //anger stat differences
 switch(anger_state){
     case 0:
@@ -32,9 +36,6 @@ if(state == PS_ATTACK_GROUND || state == PS_ATTACK_AIR) && (wall == 1 || wall ==
 	sprite_change_offset("ftilt_hurt", 204, 160);
 	sprite_change_offset("dtilt_hurt", 194, 262);
 	sprite_change_offset("utilt_hurt", 194, 262);
-	sprite_change_offset("nair_hurt", 190, 264);
-	sprite_change_offset("fair_hurt", 190, 264);
-	sprite_change_offset("bair_hurt", 190, 264);
 	sprite_change_offset("fstrong_hurt", 168, 172);
 	sprite_change_offset("ustrong_hurt", 246, 220);
 	sprite_change_offset("dstrong_hurt", 256, 322);
@@ -172,9 +173,12 @@ if(climbing == true){
     move_cooldown[AT_JAB] = 10;
     move_cooldown[AT_DATTACK] = 10;
     move_cooldown[AT_NSPECIAL] = 10;
-    move_cooldown[AT_FSPECIAL] = 10;
+    move_cooldown[AT_NSPECIAL_AIR] = 10;
+    move_cooldown[AT_FSPECIAL] += 2;
+    move_cooldown[AT_FSPECIAL_AIR] += 2;
     move_cooldown[AT_USPECIAL] = 10;
-    move_cooldown[AT_DSPECIAL] = 10;
+    move_cooldown[AT_DSPECIAL] += 2;
+    move_cooldown[AT_DSPECIAL_AIR] += 2;
     move_cooldown[AT_FSTRONG] = 10;
     move_cooldown[AT_USTRONG] = 10;
     move_cooldown[AT_DSTRONG] = 10;
@@ -201,7 +205,11 @@ if(climb_timer == 0){
 //wall changes, gravity, movement etc
 switch(wall){
     case 0:
-    air_hurtbox_spr = sprite_get("hurtboxxy_air");
+    if(state == PS_FIRST_JUMP){
+    	sprite_change_offset("hurtboxxy_air", 62, 114)
+    }else{
+    	sprite_change_offset("hurtboxxy_air", 62, 64)
+    }
     sprite_change_offset("hurtboxxy", 82, 64);
     sprite_change_offset("hurtboxxy_wall", 82, 64);
     if(climbing == false && state != PS_CROUCH && !free && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
@@ -220,11 +228,7 @@ switch(wall){
         hurtboxID.image_index = 10 / window_timer;
         hurtboxID.image_angle = 0;
     }
-    if free{
-        mask_index = sprite_get("hurtboxxy_wall_air");
-    }else{
-        mask_index = sprite_get("hurtboxxy_wall");
-    }
+    mask_index = sprite_get("hurtboxxy_wall");
     if(attack == AT_USPECIAL && window == 4){
         mask_index = sprite_get("hurtboxxy_uspecial");
         hurtboxID.sprite_index = sprite_get("hurtboxxy_uspecial");
@@ -261,11 +265,18 @@ switch(wall){
 			y -= 20;
 			x -= 40 * spr_dir;
 		}
-    }else if(window > 4 && attack == AT_USPECIAL){
+    }else if(window > 4 && window < 9 && attack == AT_USPECIAL){
+    	sprite_change_offset("hurtboxxy_uspecial", 20, 32);
 		if(window_timer == 1){
 			spr_angle = 0;
 		}
+    }else if(window == 9 && attack == AT_USPECIAL){
+    	if(window_timer == 1){
+			spr_angle = 0;
+		}
+    	sprite_change_offset("hurtboxxy_uspecial", 0, 140);
     }else{
+    	sprite_change_offset("hurtboxxy_uspecial", 20, 32);
         spr_angle = 0;
         gravity_speed = 0.5;
     }
@@ -282,26 +293,26 @@ switch(wall){
     sprite_change_offset("0_dash", 80, 66);
     sprite_change_offset("1_dash", 80, 66);
     if(right_down) && !free{
-        if(place_meeting(x + 2, y, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START || state == PS_CROUCH)){
+        if(place_meeting(x + 2, y, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START)){
             set_attack_value(AT_EXTRA_1, AG_SPRITE, sprite_get(string(plate_state) + "_climb1"));
             set_attack(AT_EXTRA_1);
             climbing = true;
-        }else if !collision_point(x + 80, y + 30, asset_get("solid_32_obj"), false, true) && position_meeting(x + 70, y + 2, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START || state == PS_CROUCH){
+        }else if !collision_point(x + 80, y + 30, asset_get("solid_32_obj"), false, true) && position_meeting(x + 70, y + 2, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START){
             set_attack_value(AT_EXTRA_2, AG_SPRITE, sprite_get(string(plate_state) + "_climb2"));
             set_attack(AT_EXTRA_2);
             climbing = true;
         }
     }else if(left_down) && !free{
-        if(place_meeting(x - 2, y, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START || state == PS_CROUCH)){
+        if(place_meeting(x - 2, y, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START)){
             set_attack_value(AT_EXTRA_1, AG_SPRITE, sprite_get(string(plate_state) + "_climb1"));
             set_attack(AT_EXTRA_1);
             climbing = true;
-        }else if !collision_point(x - 80, y + 30, asset_get("solid_32_obj"), false, true) && position_meeting(x - 70, y + 2, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START || state == PS_CROUCH){
+        }else if !collision_point(x - 80, y + 30, asset_get("solid_32_obj"), false, true) && position_meeting(x - 70, y + 2, asset_get("solid_32_obj")) && climb_timer == 0 && climbing == false && (state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_START){
             set_attack_value(AT_EXTRA_2, AG_SPRITE, sprite_get(string(plate_state) + "_climb2"));
             set_attack(AT_EXTRA_2);
             climbing = true;
         }
-    }else if(up_down && position_meeting(x + 70, y - 115, asset_get("solid_32_obj")) && position_meeting(x - 70, y - 115, asset_get("solid_32_obj")) && climbing == false && (state == PS_IDLE_AIR || state == PS_DOUBLE_JUMP || state == PS_FIRST_JUMP)){
+    }else if(up_down && position_meeting(x + 70, y - 115 + 26, asset_get("solid_32_obj")) && position_meeting(x - 70, y - 115 + 26, asset_get("solid_32_obj")) && climbing == false && (state == PS_IDLE_AIR || state == PS_DOUBLE_JUMP || state == PS_FIRST_JUMP) && wall_gauge >= 300){
         set_attack_value(AT_EXTRA_3, AG_SPRITE, sprite_get(string(plate_state) + "_climb3"));
         set_attack(AT_EXTRA_3);
         climbing = true;
@@ -431,7 +442,7 @@ switch(wall){
     }else{
         vsp = 0;
     }
-    if(jump_pressed){
+    if(jump_pressed && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
     	spr_dir = 1;
     	spr_angle = 0;
     	draw_x = -64 * spr_dir;
@@ -562,7 +573,7 @@ switch(wall){
     }else{
         vsp = 0;
     }
-    if(jump_pressed){
+    if(jump_pressed && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
     	spr_dir = -1;
     	spr_angle = 0;
     	draw_x = -64 * spr_dir;
@@ -687,7 +698,7 @@ switch(wall){
     }else{
         hsp = 0;
     }
-    if(jump_pressed){
+    if(jump_pressed && state != PS_ATTACK_GROUND && state != PS_ATTACK_AIR){
     	spr_angle = 0;
     	y += 201;
     	spr_dir *= -1;
@@ -704,9 +715,15 @@ if(wall != 0){
     move_cooldown[AT_DAIR] = 10;
     move_cooldown[AT_UAIR] = 10;
     move_cooldown[AT_NSPECIAL] = 10;
-    move_cooldown[AT_FSPECIAL] = 10;
+    if(move_cooldown[AT_FSPECIAL] <= 5){
+    	move_cooldown[AT_FSPECIAL] = 5;
+    }
+    if(move_cooldown[AT_DSPECIAL] <= 5){
+    	move_cooldown[AT_DSPECIAL] = 5;
+    }
     move_cooldown[AT_NSPECIAL_AIR] = 10;
-    move_cooldown[AT_DSPECIAL] = 10;
+    move_cooldown[AT_DSPECIAL_AIR] = 10;
+    move_cooldown[AT_FSPECIAL_AIR] = 10;
     move_cooldown[AT_USPECIAL] = 10;
 }
 
@@ -740,10 +757,17 @@ if(state == PS_CROUCH){
 set_victory_portrait(sprite_get(string(plate_state) + "_portrait"));
 set_victory_sidebar(sprite_get(string(plate_state) + "_result_small"));
 
-if(get_player_damage(player) > 50 && plate_state == 0){
+if(get_player_damage(player) > 35 && plate_state == 0 && !free){
+	set_attack(AT_TAUNT_2);
     plate_state = 1;
-}else if(get_player_damage(player) <= 50 && plate_state == 1){
+}else if(get_player_damage(player) <= 35 && plate_state == 1){
     plate_state = 0;
+}
+
+if(state == PS_ATTACK_GROUND && attack == AT_TAUNT_2){
+	soft_armor = 99999999999999;
+}else{
+	soft_armor = 0;
 }
 
 if(plate_state == 0){
@@ -763,13 +787,8 @@ if(state == PS_JUMPSQUAT){
 }
 
 //anger value stuff
-/*if(up_down && anger_value < 1000){ //debug
-    anger_value++
-    anger_value++
-    anger_value++
-    anger_value++
-}else */if(anger_value > 0){
-    anger_value--
+if(anger_value > 0 && anger_state == 2){
+    anger_value--;
 }
 
 if(anger_value < 500 && anger_state != 2){
@@ -778,8 +797,16 @@ if(anger_value < 500 && anger_state != 2){
 }else if(anger_value < 1000 && anger_state != 2){
     anger_state = 1;
     init_shader();
-}else if(anger_value == 1000){
+}else if(anger_value >= 1000){
     anger_state = 2;
+    if(sound_effect == 0){
+    	sound_stop(sound_get("beep"));
+    	beep_sound = 0;
+    	sound_play(sound_get("anger_on"), false, false, 100);	
+    }else if(sound_effect == 1){
+    	beep_sound = 0;
+    	sound_play(sound_get("tur_there_you_are"), false, false, 1);	
+    }
     init_shader();
 }else if(anger_state == 2 && anger_value == 2){
     anger_state = 0;
@@ -803,7 +830,7 @@ if(attack == AT_NSPECIAL && free){
 }
 
 //fspecial
-if(attack == AT_FSPECIAL && free){
+if(attack == AT_FSPECIAL && free && wall == 0){
     attack = AT_FSPECIAL_AIR;
     hurtboxID.sprite_index = sprite_get("fspecial_air_hurt");
 }
@@ -812,7 +839,7 @@ if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
     ice_victim.state = PS_HITSTUN;
     ice_victim.state_timer = 0;
     if(ice_size == false){
-        ice_victim.hitstop = 100;
+        ice_victim.hitstop = 80;
         ice_size = true;
         ice_victim.y -= 0.1;
         ice_1 = 100;
@@ -825,7 +852,7 @@ if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
     ice_victim.hsp = 0;
     ice_victim.vsp = 0;
     ice_victim.hitstun = true;
-    if(ice_victim.hitstop == 0){
+    if(ice_victim.hitstop <= 0){
         ice_victim.emmi_frozen = false;
     }
 }else{
@@ -836,12 +863,12 @@ if(instance_exists(ice_victim) && ice_victim.emmi_frozen == true){
 }
 
 //dspecial
-if(attack == AT_DSPECIAL && free){
+if(attack == AT_DSPECIAL && free && wall == 0){
     attack = AT_DSPECIAL_AIR;
     hurtboxID.sprite_index = sprite_get("dspecial_air_hurt");
 }
 if(instance_exists(shock_victim) && shock_victim.emmi_shocked == true){
-    move_cooldown[AT_DSPECIAL] = 120;
+    move_cooldown[AT_DSPECIAL] = 150;
     shock_victim.state_timer = 0;
     shock_victim.hitstun = true;
     emmi_shock_timer--;
@@ -875,6 +902,125 @@ if(!free){
 	max_djumps = 1;
 }
 
+//climb gauge
+if(wall != 0 && wall_gauge > 0){
+	wall_gauge -= (wall == 3? 4: 2);
+}else if(wall_gauge < 1000){
+	wall_gauge += 5;
+}
+
+if(wall_gauge == 0){
+	wall = 0;
+}
+
+//jump_fix
+if(prev_state == PS_FIRST_JUMP && state == PS_IDLE_AIR && state_timer == 1){
+	y -= 57;
+}
+
+//radar
+if(state == PS_IDLE || state == PS_IDLE_AIR || state == PS_WALK || state == PS_DASH_START || state == PS_DASH || state == PS_DASH_STOP) && anger_state != 2 && wall == 0{
+	radar_state = 1;
+}else{
+	radar_state = 0;
+}
+if(radar_state == 0 && radar_img > 0){
+	radar_img -= 1.5;
+}else if(radar_state == 1 && radar_img < 9){
+	radar_img += 1.5;
+}
+if(free){
+	radar_angle = -35;
+}else{
+	radar_angle = 0;
+}
+switch(state){
+	case PS_SPAWN:
+	radar_x = 120;
+	radar_y = -42;
+	radar_hbox_x = 162;
+	radar_hbox_y = -42;
+	break;
+	case PS_IDLE:
+	radar_x = 120;
+	radar_y = -42;
+	radar_hbox_x = 162;
+	radar_hbox_y = -42;
+	break;
+	case PS_IDLE_AIR:
+	radar_x = 104;
+	radar_y = 14;
+	radar_hbox_x = 139;
+	radar_hbox_y = 39;
+	break;
+	case PS_WALK:
+	radar_x = 120;
+	radar_y = -36;
+	radar_hbox_x = 162;
+	radar_hbox_y = -36;
+	break;
+	case PS_DASH_START:
+	radar_x = 114;
+	radar_y = -32;
+	radar_hbox_x = 156;
+	radar_hbox_y = -32;
+	break;
+	case PS_DASH:
+	radar_x = 114;
+	radar_y = -22;
+	radar_hbox_x = 156;
+	radar_hbox_y = -22;
+	break;
+	case PS_DASH_STOP:
+	radar_x = 116;
+	radar_y = -32;
+	radar_hbox_x = 158;
+	radar_hbox_y = -32;
+	break;
+}
+if(radar_state == 1 && radar_img >= 5 && anger_state != 2 && (collision_circle(x + radar_hbox_x * spr_dir, y + radar_hbox_y, 30, oPlayer, false, true) || collision_line(x + 40 * spr_dir, y - 40, x + radar_hbox_x * spr_dir, y + radar_hbox_y, oPlayer, false, true)) && anger_value < 1000){
+	anger_value += 6;
+	if(radar_sound == 0){
+		radar_sound = 1;
+		if(sound_effect == 0){
+			sound_play(sound_get("radar_sound"), true, false, 100);
+		}else if(sound_effect == 1){
+			var soundberg = radar_turret[random_func_2(abs(floor(x % 200)), 3, true)]
+			sound_play(sound_get(soundberg),false, false, 1);
+		}
+	}
+}else{
+	radar_sound = 0;
+	if(sound_effect == 0){
+		sound_stop(sound_get("radar_sound"));
+	}else if(sound_effect == 1){
+		sound_stop(soundberg);
+	}
+}
+
+//turn
+if(state == PS_WALK_TURN || state == PS_DASH_TURN){
+	turned = 1;
+}
+if(turned == 1 && state != PS_WALK_TURN && prev_state != PS_DASH_TURN && state_timer == 0){
+	turned = 0;
+	x += 26 * spr_dir;
+}
+//sound
+if(sound_effect == 0){
+	if(beep_sound == 0 && anger_state <= 1){
+		beep_sound = 1;
+		sound_play(sound_get("beep"), true, false, 100);
+	}
+}else if(sound_effect == 1){
+	beep_turret_timer--;
+	hit_turret--;
+	if(beep_turret_timer <= 0 && anger_state <= 1){
+		sound_play(sound_get(beep_turret[random_func_2(120, 4, true)]), false, false, 1);
+		beep_turret_timer = 300;
+	}
+}
+
 //constant variables
 visible = true;
 has_walljump = false;
@@ -882,6 +1028,3 @@ if(wall != 0){
     djumps = 1;
 }
 prev_dir = spr_dir;
-
-hsp = 0;
-vsp = 0;

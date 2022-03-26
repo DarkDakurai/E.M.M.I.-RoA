@@ -11,7 +11,7 @@ if(hit_player_obj.emmi_frozen == true){
 on_cooldown = 0;
 
 if(hit_player_obj.emmi_shocked == true){
-    emmi_shocked = false;
+    hit_player_obj.emmi_shocked = false;
 }
 
 switch(attack){
@@ -49,6 +49,9 @@ switch(attack){
     ice_victim = hit_player_obj;
     hit_player_obj.emmi_frozen = true;
     break;
+    case AT_USTRONG:
+    ustrong_whiff = false;
+    break;
 }
 if(my_hitboxID.attack == AT_DSPECIAL){
     shock_victim = hit_player_obj;
@@ -69,3 +72,8 @@ if(my_hitboxID.attack == AT_DSPECIAL){
     hit_player_obj.emmi_shocked = true;
     emmi_shock_timer = 40;
 }
+if(my_hitboxID.attack == AT_NSPECIAL || my_hitboxID.attack == AT_NSPECIAL_AIR) && my_hitboxID.hbox_num == 2{
+    hit_player_obj.x += 50 * spr_dir;
+    fog_alpha = 40;
+}
+
